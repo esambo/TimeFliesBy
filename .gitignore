@@ -1,0 +1,6 @@
+tmp/**/*
+log/*.log
+tmp
+tmp/pids/*.pid
+db/*.sqlite3
+.idea
