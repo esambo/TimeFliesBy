@@ -1,15 +1,7 @@
 <h1>Editing task</h1>
 
 <% form_for(@task) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
+    <%= render :partial => 'form', :locals => { :f => f, :submit_label => 'Update' } %>   
 <% end %>
 
 <%= link_to 'Show', @task %> |

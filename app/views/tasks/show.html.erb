@@ -3,6 +3,16 @@
   <%=h @task.title %>
 </p>
 
+<p>
+  <b>Start:</b>
+  <%=h @task.start %>
+</p>
+
+<p>
+  <b>Stop:</b>
+  <%=h @task.stop %>
+</p>
+
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>

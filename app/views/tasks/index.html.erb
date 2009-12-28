@@ -3,11 +3,15 @@
 <table>
   <tr>
     <th>Title</th>
+    <th>Start</th>
+    <th>Stop</th>
   </tr>
 
 <% @tasks.each do |task| %>
   <tr>
     <td><%=h task.title %></td>
+    <td><%=h task.start %></td>
+    <td><%=h task.stop %></td>
     <td><%= link_to 'Show', task %></td>
     <td><%= link_to 'Edit', edit_task_path(task) %></td>
     <td><%= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete %></td>

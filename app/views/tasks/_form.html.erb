@@ -1,0 +1,19 @@
+<%= f.error_messages %>
+
+<p>
+  <%= f.label :title %><br />
+  <%= f.text_field :title %>
+</p>
+<p>
+  <%= f.label :start %><br />
+  <%# f.datetime_select :start %>
+  <%= f.text_field :start %>
+</p>
+<p>
+  <%= f.label :stop %><br />
+  <%# f.datetime_select :stop %>
+  <%= f.text_field :stop %>
+</p>
+<p>
+  <%= f.submit submit_label %>
+</p>
