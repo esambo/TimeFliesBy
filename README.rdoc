@@ -6,3 +6,8 @@ Simple time tracking that works for me
 == Use it
 
 http://www.timefliesby.com
+
+
+== LICENSE:
+
+Copyright (c) 2009 Emmanuel Sambo, released under the MIT license
