@@ -11,8 +11,8 @@ Feature: Task Time
     And I press "Create"
     Then I should see "Task was successfully created."
 
-#  Scenario: Require start and stop time
-#    Given I create a new task
-#    When I set "title" to "Bad test"
-#    Then I should get a validation error
+  Scenario: Require start and stop time
+    Given I create a new task
+    When I set "title" to "Bad test"
+    Then I should get a validation error
     
