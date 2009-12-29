@@ -13,6 +13,11 @@
   <%=h @task.stop %>
 </p>
 
+<p>
+  <b>Description:</b>
+  <%=h @task.description %>
+</p>
+
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>

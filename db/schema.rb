@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091228204306) do
+ActiveRecord::Schema.define(:version => 20091229181013) do
 
   create_table "tasks", :force => true do |t|
     t.string   "title"
@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20091228204306) do
     t.datetime "updated_at"
     t.datetime "start"
     t.datetime "stop"
+    t.text     "description"
   end
 
 end

@@ -5,7 +5,8 @@ describe Task do
     @valid_attributes = {
       :title => "value for title",
       :start => Time.now,
-      :stop => Time.now
+      :stop => Time.now,
+      :description => "value for description"
     }
   end
 
