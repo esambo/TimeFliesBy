@@ -1,5 +1,8 @@
 <h1>Listing tasks</h1>
 
+<style type="text/css">
+    .rightSpace {padding-right: 1.5em;}  
+</style>
 <table>
   <tr>
     <th>Title</th>
@@ -10,10 +13,10 @@
 
 <% @tasks.each do |task| %>
   <tr>
-    <td><%=h task.title %></td>
-    <td><%=h task.start %></td>
-    <td><%=h task.stop %></td>
-    <td><%=h task.description %></td>
+    <td class="rightSpace"><%=h task.title %></td>
+    <td class="rightSpace"><%=h task.start %></td>
+    <td class="rightSpace"><%=h task.stop %></td>
+    <td class="rightSpace"><%=h task.description %></td>
     <td><%= link_to 'Show', task %></td>
     <td><%= link_to 'Edit', edit_task_path(task) %></td>
     <td><%= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete %></td>

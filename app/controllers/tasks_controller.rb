@@ -41,10 +41,15 @@ class TasksController < ApplicationController
   # POST /tasks.xml
   def create
     @task = Task.new(params[:task])
+    @task.now if params[:commit] == 'Now'
 
     respond_to do |format|
       if @task.save
-        flash[:notice] = 'Task was successfully created.'
+        if @task.no_stop_from_previous_on_now
+          flash[:notice] = 'No previous task was found! Please check the start time.'
+        else
+          flash[:notice] = 'Task was successfully created.'
+        end
         format.html { redirect_to(@task) }
         format.xml  { render :xml => @task, :status => :created, :location => @task }
       else
@@ -58,6 +63,11 @@ class TasksController < ApplicationController
   # PUT /tasks/1.xml
   def update
     @task = Task.find(params[:id])
+    if params[:commit] == 'Now'
+      @task.now
+      params[:task] ||= {}
+      params[:task][:stop] = @task.stop
+    end
 
     respond_to do |format|
       if @task.update_attributes(params[:task])

@@ -15,3 +15,7 @@ end
 Then /^I should get a validation error$/ do
   @task.should_not be_valid
 end
+
+Given /^I have a task$/ do
+  @task = Task.create!(:title => 'first task', :start => 5.minutes.ago, :stop => 1.minute.ago)
+end
