@@ -191,12 +191,45 @@
           </li>
           
           <li>
-            <h3>Browse the source</h3>
+            <h3>Resources</h3>
             <ul class="links">
-              <li><a href="http://github.com/esambo/TimeFliesBy">GitHub</a> </li>
+              <li><a href="http://github.com/esambo/TimeFliesBy"><img src="images/GitHub.ico" alt="GitHub" border="0"> Source Code</a></li>
+              <li><a href="http://www.pivotaltracker.com/projects/34616"><img src="images/Pivotal_Tracker.ico" alt="Pivotal Tracker" border="0"> Stories</a></li>
+              <li><strong>Email:</strong> support at timefliesby dot com</li>
             </ul>
           </li>
         </ul>
+          <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+          <script>
+              new TWTR.Widget({
+                version: 2,
+                type: 'profile',
+                rpp: 4,
+                interval: 6000,
+                width: 250,
+                height: 300,
+                theme: {
+                  shell: {
+                    background: '#434fd1',
+                    color: '#000000'
+                  },
+                  tweets: {
+                    background: '#ffffff',
+                    color: '#992f99',
+                    links: '#329408'
+                  }
+                },
+                features: {
+                  scrollbar: false,
+                  loop: false,
+                  live: false,
+                  hashtags: true,
+                  timestamp: true,
+                  avatars: false,
+                  behavior: 'all'
+                }
+              }).render().setUser('TFliesBy').start();
+          </script>
       </div>
 
       <div id="content">
