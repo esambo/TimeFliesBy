@@ -42,13 +42,18 @@ describe TasksController do
 
     describe "with valid params" do
       it "assigns a newly created task as @task" do
-        Task.stub!(:new).with({'these' => 'params'}).and_return(mock_task(:save => true))
-        post :create, :task => {:these => 'params'}
+        start = Time.now
+        Task.stub!(:new).with({'start' => start}).and_return(mock_task(:save => true))
+        task = mock_task(:start => start)
+        task.should_receive(:no_stop_from_previous_on_now).and_return(true)
+        post :create, :task => {:start => start}
         assigns[:task].should equal(mock_task)
       end
 
       it "redirects to the created task" do
         Task.stub!(:new).and_return(mock_task(:save => true))
+        task = mock_task
+        task.should_receive(:no_stop_from_previous_on_now).and_return(true)
         post :create, :task => {}
         response.should redirect_to(task_url(mock_task))
       end
