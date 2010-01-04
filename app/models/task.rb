@@ -8,17 +8,17 @@ class Task < ActiveRecord::Base
     self.no_stop_from_previous_on_now = false  
   end
 
-  def now
-    self.stop = Time.now
+  def now time = Time.now
+    self.stop = time
     if self.start.blank?
 #      previous_task = Task.first(:order => "start DESC", :conditions => ["stop <= ? AND stop IS NOT NULL", Time.zone.now])
-      previous_task = Task.first(:order => "start DESC", :conditions => ["stop <= ?", Time.now])
+      previous_task = Task.first(:order => "start DESC", :conditions => ["stop <= ?", time])
     end
     if previous_task && !previous_task.stop.blank?
       self.start = previous_task.stop
       self.no_stop_from_previous_on_now = false
     else
-      self.start = Time.now
+      self.start = time
       self.no_stop_from_previous_on_now = true
     end
   end

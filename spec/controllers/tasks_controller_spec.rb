@@ -45,15 +45,27 @@ describe TasksController do
         start = Time.now
         Task.stub!(:new).with({'start' => start}).and_return(mock_task(:save => true))
         task = mock_task(:start => start)
-        task.should_receive(:no_stop_from_previous_on_now).and_return(true)
+        task.should_receive(:no_stop_from_previous_on_now).and_return(false)
+        @controller.instance_eval{flash.stub!(:sweep)}
         post :create, :task => {:start => start}
         assigns[:task].should equal(mock_task)
+        flash.should include(:notice => 'Task was successfully created.')
+      end
+
+      it "when using NOW" do
+        Task.stub!(:new).and_return(mock_task(:save => true))
+        task = mock_task()
+        task.should_receive(:now)
+        task.should_receive(:no_stop_from_previous_on_now).and_return(true)
+        @controller.instance_eval{flash.stub!(:sweep)}
+        post :create, :commit => 'Now'
+        flash.should include(:notice => 'No previous task was found! Please check the start time.')
       end
 
       it "redirects to the created task" do
         Task.stub!(:new).and_return(mock_task(:save => true))
         task = mock_task
-        task.should_receive(:no_stop_from_previous_on_now).and_return(true)
+        task.should_receive(:no_stop_from_previous_on_now).and_return(false)
         post :create, :task => {}
         response.should redirect_to(task_url(mock_task))
       end

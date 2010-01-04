@@ -45,3 +45,7 @@ Webrat.configure do |config|
   config.open_error_files = false # Set to true if you want error pages to pop up in the browser
 end
 
+require 'time_travel'
+After('@time_travel') do
+  Time.now = nil
+end
