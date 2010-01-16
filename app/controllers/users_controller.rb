@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   # If the user needs to confirm his account, we have to tell him that we sent a confirmation e-mail,
   # otherwise we just show a welcome information. Besides, in some cases the user has a trial period
   # to use the application, in such cases, confirm_within is higher than zero and the user can be
-  # signed in just after sign up.
+  # signed in just after register.
   #
   def create
     @user = User.new(params[:user])

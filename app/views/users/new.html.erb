@@ -1,4 +1,4 @@
-<% title 'Sign Up' -%>
+<% title 'Register' -%>
 
 <% form_for @user, :url => user_path do |f| -%>
   <%= f.error_messages %>
@@ -9,5 +9,7 @@
   <p><%= f.label :password_confirmation %></p>
   <p><%= f.password_field :password_confirmation %></p>
   
-  <p class="submit"><%= f.submit "Sign Up" %></p>
+  <p class="submit"><%= f.submit "Register" %></p>
 <% end -%>
+<p>Already registered? <%= link_to 'Sign in', new_user_session_path %></p>
+

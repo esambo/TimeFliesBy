@@ -1,5 +1,5 @@
 <h1>Time Flies By</h1>
 <% unless user_signed_in? -%>
-  <p><%= link_to 'Sign in as User', new_user_session_path %></p>
-  <p><%= link_to 'Sign up as User', new_user_path %></p>
+  <p><%= link_to 'Sign in', new_user_session_path %></p>
+  <p><%= link_to 'Register', new_user_path %></p>
 <% end -%>

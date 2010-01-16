@@ -3,7 +3,7 @@ en:
     sessions:
       signed_in: 'Signed in successfully.'
       signed_out: 'Signed out successfully.'
-      unauthenticated: 'You need to sign in or sign up before continuing.'
+      unauthenticated: 'You need to sign in or register before continuing.'
       unconfirmed: 'You have to confirm your account before continuing.'
       invalid: 'Invalid email or password.'
       timeout: 'Your session expired, please sign in again to continue.'
