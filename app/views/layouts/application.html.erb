@@ -12,16 +12,19 @@
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>
 
-      <% if user_signed_in? -%>
-        <div id="user_login_box" style="float:right">
+      <div id="user_login_box" style="float:right">
+        <% if user_signed_in? -%>
           <%= current_user.email %> |
           <%= link_to 'My info', edit_user_path %> |
           <%= link_to 'Sign out', destroy_user_session_path %>
-        </div>
-      <% end -%>
+        <% else -%>
+          <%= link_to 'Register', new_user_path %> |
+          <%= link_to 'Sign in', new_user_session_path %>
+        <% end -%>
+      </div>
       <div style="float:left">
-          <%= link_to 'Home', root_path %> |
-          <%= link_to 'Tasks', tasks_path %>
+        <%= link_to 'Home', root_path %> |
+        <%= link_to 'Tasks', tasks_path %>
       </div>
       <div style="clear:both"></div>
 

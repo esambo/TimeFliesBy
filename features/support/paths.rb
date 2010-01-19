@@ -21,6 +21,8 @@ module NavigationHelpers
         tasks_path
       when /^the new task page$/i
         new_task_path
+      when /^the users sign in page$/i
+        new_user_session_path #users/sign_in
 
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +

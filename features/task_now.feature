@@ -3,6 +3,9 @@ Feature: Task Now
   As a daily end user
   I want to set the current date-time to the stop date-time
 
+  Background: Signed in
+    Given I am signed in as a user
+  
   @time_travel
   Scenario: Create a new task using 'Now' with having a previous task
     Given it is "1/3/2010 8:13:23 AM"

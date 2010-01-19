@@ -1,5 +1,169 @@
-<h1>Time Flies By</h1>
-<% unless user_signed_in? -%>
-  <p><%= link_to 'Sign in', new_user_session_path %></p>
-  <p><%= link_to 'Register', new_user_path %></p>
-<% end -%>
+<% title "Time Flies By" -%>
+
+<style type="text/css" media="screen">
+  h1 {
+    /*font-size: 28px;*/
+    /*color: #000;*/
+  }
+
+  #content {
+    float: left;
+    /*background-color: white;*/
+    /*border: 3px solid #aaa;*/
+    /*border-top: none;*/
+    padding: 25px;
+    /*width: 500px;*/
+  }
+
+  #sidebar {
+    float: right;
+    width: 250px;
+  }
+
+  #footer {
+    clear: both;
+  }
+
+  #header, #history {
+    /*padding-left: 75px;*/
+    /*padding-right: 30px;*/
+  }
+
+  #header {
+    /*background-image: url("images/rails.png");*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: top left;*/
+    /*height: 64px;*/
+  }
+  #header h1, #header h2 {margin: 0}
+  #header h2 {
+    /*color: #888;*/
+    font-weight: normal;
+    font-size: 16px;
+  }
+
+  #history {
+    /*border-top: 1px solid #ccc;*/
+    margin-top: 25px;
+    padding-top: 15px;
+  }
+  #history h1 {
+    margin: 0;
+    font-size: 20px;
+  }
+  #history h2 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: normal;
+    color: #333;
+    margin-bottom: 25px;
+  }
+  #history ol {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  #history li {
+    font-size: 18px;
+    color: #888;
+    margin-bottom: 25px;
+  }
+  #history li h2 {
+    margin: 0;
+    font-weight: normal;
+    font-size: 18px;
+    color: #333;
+  }
+  #history li p {
+    color: #555;
+    font-size: 13px;
+  }
+
+  #sidebar ul {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  #sidebar ul h3 {
+    margin-top: 25px;
+    font-size: 16px;
+    padding-bottom: 10px;
+    /*border-bottom: 1px solid #ccc;*/
+  }
+  #sidebar li {
+    list-style-type: none;
+  }
+  #sidebar ul.links li {
+    margin-bottom: 5px;
+  }
+
+</style>
+
+<hr>
+<div id="content">
+  <div id="header">
+    <h1>Time Flies By</h1>
+    <h2>Simple time tracking that works for me</h2>
+  </div>
+
+  <div id="history">
+    <h1>History</h1>
+    <h2>Why yet another time tracking app</h2>
+
+    <ol>
+      <li>
+        <h2>Simple</h2>
+        <p>Simple to use, simple to set up.</p>
+      </li>
+
+      <li>
+        <h2>Extensible</h2>
+        <p>I needed to integrate it with an issue tracker app</p>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div id="sidebar">
+  <ul id="sidebar-items">
+    <li>
+      <h3>Resources</h3>
+      <ul class="links">
+        <li><a href="http://github.com/esambo/TimeFliesBy"><img src="images/GitHub.ico" alt="GitHub" border="0"> Source Code</a></li>
+        <li><a href="http://www.pivotaltracker.com/projects/34616"><img src="images/Pivotal_Tracker.ico" alt="Pivotal Tracker" border="0"> Stories</a></li>
+        <li><strong>Email:</strong> support at timefliesby dot com</li>
+      </ul>
+    </li>
+  </ul>
+    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+    <script>
+        new TWTR.Widget({
+          version: 2,
+          type: 'profile',
+          rpp: 4,
+          interval: 6000,
+          width: 250,
+          height: 300,
+          theme: {
+            shell: {
+              background: '#434fd1',
+              color: '#000000'
+            },
+            tweets: {
+              background: '#ffffff',
+              color: '#992f99',
+              links: '#329408'
+            }
+          },
+          features: {
+            scrollbar: false,
+            loop: false,
+            live: false,
+            hashtags: true,
+            timestamp: true,
+            avatars: false,
+            behavior: 'all'
+          }
+        }).render().setUser('TFliesBy').start();
+    </script>
+</div>
+
+<div id="footer">&nbsp;</div>

@@ -4,6 +4,9 @@ Feature: Task Title
   As a daily end user
   I want to keep track of tasks
 
+  Background: Signed in
+    Given I am signed in as a user
+
   Scenario: Create new task with title
     Given I am on the tasks page
     When I follow "New task"
