@@ -26,14 +26,21 @@ Given /^I am signed in as a user$/ do
 end
 
 When /^I follow "([^\"]*)" in the "([^\"]*)" email$/ do |link_name, subject|
-  ActionMailer::Base.deliveries.size.should == 1
-  email = ActionMailer::Base.deliveries.first
-  email.subject.should match(subject)
-  match = email.body.match Regexp.new("<a href=\"(http:.+)\">#{link_name}<\/a>")
-  link_url = match[1]
-  link_url.should match("confirmation_token")
-  visit link_url
-#  require 'webrat/core/scope'
-#  webrat_email = Webrat::Scope.from_page(session, response, email.body)
-#  webrat_email.click_link link_name
+#  ActionMailer::Base.deliveries.size.should == 1
+#  email = ActionMailer::Base.deliveries.first
+#  email.subject.should match(subject)
+#  match = email.body.match Regexp.new("<a href=\"(http:.+)\">#{link_name}<\/a>")
+#  link_url = match[1]
+#  link_url.should match("confirmation_token")
+#  visit link_url
+
+  # Based on: http://github.com/bmabey/email-spec/blob/master/examples/rails_root/features/step_definitions/user_steps.rb
+  unread_emails_for(current_email_address).size.should == 1
+
+  # this call will store the email and you can access it with current_email
+  open_last_email_for(last_email_address)
+  current_email.should have_subject(subject)
+  current_email.should have_body_text('You can confirm your account through the link below:')
+
+  visit_in_email link_name
 end
