@@ -18,21 +18,11 @@ Given /^I registered as a new user$/ do
 end
 
 Given /^I am a registered user$/ do
-  user = User.create! do |u|
-    u.email = 'test@timefliesby.com'
-    u.password = 'secret'
-    u.password_confirmation = 'secret'
-  end
-#  user.confirm!
+  create_user
 end
 
 Given /^I am signed in as a user$/ do
-  Given "I am a registered user"
-  visit path_to "the home page"
-  click_link "Sign in"
-  fill_in "email", :with => "test@timefliesby.com"
-  fill_in "password", :with => "secret"
-  click_button "Sign in"
+  sign_in_as_user
 end
 
 When /^I follow "([^\"]*)" in the "([^\"]*)" email$/ do |link_name, subject|
