@@ -14,6 +14,11 @@ describe Task do
     Task.create!(@valid_attributes)
   end
 
+  it "should require start" do
+    task = Task.new
+    task.should_not be_valid
+  end
+
   it "should not validate for stop before start" do
     task = Task.new
     task.start = Time.now
