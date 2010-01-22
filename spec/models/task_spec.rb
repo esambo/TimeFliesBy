@@ -14,6 +14,13 @@ describe Task do
     Task.create!(@valid_attributes)
   end
 
+  it "should not validate for stop before start" do
+    task = Task.new
+    task.start = Time.now
+    task.stop = 5.minutes.ago
+    task.should_not be_valid
+  end
+
   context "with frozen time" do
     before :each do
       Time.now = "2010-01-03 9:13:23 AM" #freeze time using time_travel plugin
@@ -46,4 +53,5 @@ describe Task do
       task.no_stop_from_previous_on_now.should be_false
     end
   end
+
 end
