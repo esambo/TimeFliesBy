@@ -36,7 +36,7 @@ Feature: Authentication
     Then I should see "Signed in successfully."
 
   Scenario: Sign out
-    Given I am signed in as a user
+    Given I am signed in as a new user
     And I am on the tasks page
     When I follow "Sign out"
     Then I should be on the home page

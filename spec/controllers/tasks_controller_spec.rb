@@ -1,10 +1,15 @@
 require 'spec_helper'
+require "devise/test_helpers"
 
 describe TasksController do
 
+  include Devise::TestHelpers
+  include AuthenticationHelperMethods
+  
   describe "Sign in as user" do
     before :each do
       controller.stub!(:authenticate_user!).and_return(true)
+      sign_in create_user
     end
 
     def mock_task(stubs={})
@@ -21,7 +26,7 @@ describe TasksController do
 
     describe "GET show" do
       it "assigns the requested task as @task" do
-        Task.stub!(:find).with("37").and_return(mock_task)
+        Task.stub!(:find).with("37", anything()).and_return(mock_task)
         get :show, :id => "37"
         assigns[:task].should equal(mock_task)
       end
@@ -37,7 +42,7 @@ describe TasksController do
 
     describe "GET edit" do
       it "assigns the requested task as @task" do
-        Task.stub!(:find).with("37").and_return(mock_task)
+        Task.stub!(:find).with("37", anything()).and_return(mock_task)
         get :edit, :id => "37"
         assigns[:task].should equal(mock_task)
       end
@@ -96,7 +101,7 @@ describe TasksController do
 
       describe "with valid params" do
         it "updates the requested task" do
-          Task.should_receive(:find).with("37").and_return(mock_task)
+          Task.should_receive(:find).with("37", anything()).and_return(mock_task)
           mock_task.should_receive(:update_attributes).with({'these' => 'params'})
           put :update, :id => "37", :task => {:these => 'params'}
         end
@@ -116,7 +121,7 @@ describe TasksController do
 
       describe "with invalid params" do
         it "updates the requested task" do
-          Task.should_receive(:find).with("37").and_return(mock_task)
+          Task.should_receive(:find).with("37", anything()).and_return(mock_task)
           mock_task.should_receive(:update_attributes).with({'these' => 'params'})
           put :update, :id => "37", :task => {:these => 'params'}
         end
@@ -138,7 +143,7 @@ describe TasksController do
 
     describe "DELETE destroy" do
       it "destroys the requested task" do
-        Task.should_receive(:find).with("37").and_return(mock_task)
+        Task.should_receive(:find).with("37", anything()).and_return(mock_task)
         mock_task.should_receive(:destroy)
         delete :destroy, :id => "37"
       end

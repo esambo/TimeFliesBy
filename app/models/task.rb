@@ -1,4 +1,7 @@
 class Task < ActiveRecord::Base
+  belongs_to :user
+  validates_presence_of :user
+  validates_associated :user, :message => 'Bad user association' #Doesn't seem to do anything...
   attr_accessor :no_stop_from_previous_on_now
   validates_datetime :start, :on_or_after => '2000-01-01T08:00:00-0600'
   validates_datetime :stop,  :on_or_before => 3.months.from_now #, :allow_blank => true

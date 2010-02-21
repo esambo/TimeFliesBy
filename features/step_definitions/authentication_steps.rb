@@ -21,8 +21,12 @@ Given /^I am a registered user$/ do
   create_user
 end
 
-Given /^I am signed in as a user$/ do
-  sign_in_as_user
+Given /^I am signed in as a new user$/ do
+  sign_in_as_new_user
+end
+
+Given /^I am signed in as a new user "([^\"]*)"$/ do |email|
+  sign_in_as_new_user :email => email
 end
 
 When /^I follow "([^\"]*)" in the "([^\"]*)" email$/ do |link_name, subject|

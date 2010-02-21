@@ -4,7 +4,7 @@ Feature: Task Description
   I want to enter long task descriptions that don't fit into the title
 
   Background: Signed in
-    Given I am signed in as a user
+    Given I am signed in as a new user
     
   Scenario: Add task description
     Given I am on the new task page

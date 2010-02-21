@@ -4,7 +4,7 @@ Feature: Task stop greater than start or blank
   I want to ensure that stop is greater than start
 
   Background: Signed in
-    Given I am signed in as a user
+    Given I am signed in as a new user
 
   Scenario: Validation error for stop before start
     Given I am on the new task page

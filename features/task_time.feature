@@ -4,7 +4,7 @@ Feature: Task Time
   I want to see the start date-time and stop date-time of a task
 
   Background: Signed in
-    Given I am signed in as a user
+    Given I am signed in as a new user
 
   Scenario: Create a task
     Given I am on the new task page

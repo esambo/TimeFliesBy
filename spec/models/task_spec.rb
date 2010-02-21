@@ -1,13 +1,28 @@
 require 'spec_helper'
+include AuthenticationHelperMethods
 
 describe Task do
   before(:each) do
+    @valid_user = create_user(:email => 'valid_user@timefliesby.com')
     @valid_attributes = {
-      :title => "value for title",
+      :title => "valid title",
       :start => Time.now,
       :stop => Time.now,
-      :description => "value for description"
+      :description => "valid description",
+      :user => @valid_user
     }
+  end
+
+  it "should only show tasks for the current user" do
+    u1 = create_user(:email => 'models_test_user_3@timefliesby.com')
+    Task.all.size.should == 0
+    u1.tasks.create({:title => "Task 1 for user: 1", :start => 1.minutes.ago, :stop => Time.now, :user_id => 1})
+    Task.all.size.should == 1
+
+    u2 = create_user(:email => 'models_test_user_2@timefliesby.com')
+    u2.tasks.all.size.should == 0
+    u2.tasks.create({:title => "Task 1 for user: 2", :start => 1.minute.ago, :stop => Time.now, :user_id => 2})
+    u2.tasks.all.size.should == 1
   end
 
   it "should create a new instance given valid attributes" do
@@ -17,6 +32,7 @@ describe Task do
   it "should require start" do
     task = Task.new
     task.should_not be_valid
+    task.errors[:start].should_not be_blank
   end
 
   it "should not validate for stop before start" do
@@ -24,6 +40,30 @@ describe Task do
     task.start = Time.now
     task.stop = 5.minutes.ago
     task.should_not be_valid
+    task.errors[:stop].should_not be_blank
+  end
+
+  it "should require user" do
+    task = Task.new
+    task.should_not be_valid
+    task.errors[:user].should_not be_blank
+  end
+
+  it "should require valid user" do
+    task = Task.new
+    task.start = 1.minutes.ago
+    task.stop = Time.now
+    task.user_id = 9999
+    task.should_not be_valid
+    task.errors[:user].should_not be_blank
+  end
+
+  it "should create a valid task" do
+    task = Task.new
+    task.start = 1.minutes.ago
+    task.stop = Time.now
+    task.user = @valid_user
+    task.should be_valid
   end
 
   context "with frozen time" do
@@ -50,7 +90,7 @@ describe Task do
     end
 
     it "should set start to previous stop when using NOW on new task" do
-      prev = Task.create! :start => 5.minutes.ago, :stop => 4.minutes.ago
+      prev = Task.create! :start => 5.minutes.ago, :stop => 4.minutes.ago, :user => @valid_user
       task = Task.new
       task.now
       task.start.should be < Time.now

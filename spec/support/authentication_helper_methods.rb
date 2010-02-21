@@ -1,4 +1,4 @@
-module AuthenticationHelpers
+module AuthenticationHelperMethods
 
   # Based on: http://github.com/plataformatec/devise/blob/master/test/support/integration.rb
 
@@ -33,8 +33,3 @@ module AuthenticationHelpers
   end
 
 end
-
-World AuthenticationHelpers
-
-#require File.expand_path(File.dirname(__FILE__) + '/../../spec/support/authentication_helper_methods')
-#World AuthenticationHelperMethods

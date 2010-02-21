@@ -1,5 +1,9 @@
 Given /^I have a one minute old task$/ do
-  @task = Task.create!(:title => 'first task', :start => 5.minutes.ago, :stop => 1.minute.ago)
+  @task = Task.create!(:title => 'first task', :start => 5.minutes.ago, :stop => 1.minute.ago, :user => current_user)
+end
+
+Given /^I have a task "([^\"]*)"$/ do |title|
+  @task = Task.create!(:title => title, :start => 5.minutes.ago, :stop => 1.minute.ago, :user => current_user)
 end
 
 When /^I fill in all required fields$/ do

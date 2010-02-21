@@ -5,7 +5,7 @@ Feature: Task Title
   I want to keep track of tasks
 
   Background: Signed in
-    Given I am signed in as a user
+    Given I am signed in as a new user
 
   Scenario: Create new task with title
     Given I am on the tasks page
