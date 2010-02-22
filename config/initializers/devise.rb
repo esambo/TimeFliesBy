@@ -11,7 +11,7 @@ Devise.setup do |config|
   config.all = [:authenticatable, :confirmable, :recoverable, :rememberable, :trackable, :validatable]
 
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "noreply@timefliesby.com"
+  config.mailer_sender = "TimeFliesBy <noreply@timefliesby.com>"
 
   # Invoke `rake secret` and use the printed value to setup a pepper to generate
   # the encrypted password. By default no pepper is used.
@@ -39,7 +39,7 @@ Devise.setup do |config|
   config.confirm_within = 2.days
 
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  config.remember_for = 2.years
 
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again.
