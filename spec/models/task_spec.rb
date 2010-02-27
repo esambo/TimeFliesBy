@@ -29,39 +29,39 @@ describe Task do
   end
 
   it "should require start" do
-    task = @valid_user.tasks.new
-    task.should_not be_valid
-    task.errors[:start].should_not be_blank
+    t = @valid_user.tasks.new
+    t.should_not be_valid
+    t.errors[:start].should_not be_blank
   end
 
   it "should not validate for stop before start" do
-    task = @valid_user.tasks.new
-    task.start = Time.now
-    task.stop = 5.minutes.ago
-    task.should_not be_valid
-    task.errors[:stop].should_not be_blank
+    t = @valid_user.tasks.new
+    t.start = Time.now
+    t.stop = 5.minutes.ago
+    t.should_not be_valid
+    t.errors[:stop].should_not be_blank
   end
 
   it "should require user" do
-    task = Task.new
-    task.should_not be_valid
-    task.errors[:user].should_not be_blank
+    t = Task.new
+    t.should_not be_valid
+    t.errors[:user].should_not be_blank
   end
 
   it "should require valid user" do
-    task = @valid_user.tasks.new
-    task.start = 1.minutes.ago
-    task.stop = Time.now
-    task.user_id = 9999
-    task.should_not be_valid
-    task.errors[:user].should_not be_blank
+    t = @valid_user.tasks.new
+    t.start = 1.minutes.ago
+    t.stop = Time.now
+    t.user_id = 9999
+    t.should_not be_valid
+    t.errors[:user].should_not be_blank
   end
 
   it "should create a valid task" do
-    task = @valid_user.tasks.new
-    task.start = 1.minutes.ago
-    task.stop = Time.now
-    task.should be_valid
+    t = @valid_user.tasks.new
+    t.start = 1.minutes.ago
+    t.stop = Time.now
+    t.should be_valid
   end
 
   context "with frozen time" do
@@ -74,26 +74,26 @@ describe Task do
     end
 
     it "should set start and stop to Time.now when using NOW on the first task" do
-      task = @valid_user.tasks.new
-      task.now
-      task.start.should == Time.now
-      task.stop.should == Time.now
-      task.no_stop_from_previous_on_now.should be_true
+      t = @valid_user.tasks.new
+      t.now
+      t.start.should == Time.now
+      t.stop.should == Time.now
+      t.no_stop_from_previous_on_now.should be_true
     end
 
     it "should set stop to Time.now when using NOW on new task" do
-      task = @valid_user.tasks.new
-      task.now
-      task.stop.should == Time.now
+      t = @valid_user.tasks.new
+      t.now
+      t.stop.should == Time.now
     end
 
     it "should set start to previous stop when using NOW on new task" do
-      prev = @valid_user.tasks.create! :start => 5.minutes.ago, :stop => 4.minutes.ago
-      task = @valid_user.tasks.new
-      task.now
-      task.start.should be < Time.now
-      task.start.should == prev.stop
-      task.no_stop_from_previous_on_now.should be_false
+      prev_t = @valid_user.tasks.create! :start => 5.minutes.ago, :stop => 4.minutes.ago
+      t = @valid_user.tasks.new
+      t.now
+      t.start.should be < Time.now
+      t.start.should == prev_t.stop
+      t.no_stop_from_previous_on_now.should be_false
     end
   end
 
