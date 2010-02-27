@@ -15,7 +15,7 @@ class Task < ActiveRecord::Base
     self.stop = time
     if self.start.blank?
 #      previous_task = Task.first(:order => "start DESC", :conditions => ["stop <= ? AND stop IS NOT NULL", Time.zone.now])
-      previous_task = Task.first(:order => "start DESC", :conditions => ["stop <= ?", time])
+      previous_task = self.user.tasks.first(:order => "start DESC", :conditions => ["stop <= ?", time])
     end
     if previous_task && !previous_task.stop.blank?
       self.start = previous_task.stop

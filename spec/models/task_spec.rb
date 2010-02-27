@@ -73,7 +73,7 @@ describe Task do
       Time.now = nil #undo time_travel
     end
 
-    it "should set start and stop to Time.now when using NOW on the first task" do
+    it "should set start and stop to Time.now when using now() on the first task" do
       t = @valid_user.tasks.new
       t.now
       t.start.should == Time.now
@@ -81,13 +81,13 @@ describe Task do
       t.no_stop_from_previous_on_now.should be_true
     end
 
-    it "should set stop to Time.now when using NOW on new task" do
+    it "should set stop to Time.now when using now() on new task" do
       t = @valid_user.tasks.new
       t.now
       t.stop.should == Time.now
     end
 
-    it "should set start to previous stop when using NOW on new task" do
+    it "should set start to previous stop when using now() on new task" do
       prev_t = @valid_user.tasks.create! :start => 5.minutes.ago, :stop => 4.minutes.ago
       t = @valid_user.tasks.new
       t.now
@@ -95,6 +95,18 @@ describe Task do
       t.start.should == prev_t.stop
       t.no_stop_from_previous_on_now.should be_false
     end
+
+    it "should only use the current user for now()" do
+      prev_u = create_user(:email => 'models_test_user_2@timefliesby.com')
+      prev_t = prev_u.tasks.create({:title => "Task 1 for user: 2", :start => 13.minutes.ago.localtime, :stop => 10.minutes.ago.localtime})
+
+      t = @valid_user.tasks.new
+      t.now
+      t.start.should == Time.now.localtime
+      t.start.should_not == prev_t.stop
+      t.no_stop_from_previous_on_now.should be_true
+    end
+
   end
 
 end
