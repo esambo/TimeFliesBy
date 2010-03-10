@@ -5,3 +5,4 @@ tmp/pids/*.pid
 db/*.sqlite3
 .idea
 webrat-*.html
+rerun.txt
