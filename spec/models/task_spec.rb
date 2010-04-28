@@ -78,7 +78,7 @@ describe Task do
       t.now
       t.start.should == Time.now
       t.stop.should == Time.now
-      t.no_stop_from_previous_on_now.should be_true
+      t.first_task.should be_true
     end
 
     it "should set stop to Time.now when using now() on new task" do
@@ -93,7 +93,7 @@ describe Task do
       t.now
       t.start.should be < Time.now
       t.start.should == prev_t.stop
-      t.no_stop_from_previous_on_now.should be_false
+      t.first_task.should be_false
     end
 
     it "should only use the current user for now()" do
@@ -104,7 +104,7 @@ describe Task do
       t.now
       t.start.should == Time.now.localtime
       t.start.should_not == prev_t.stop
-      t.no_stop_from_previous_on_now.should be_true
+      t.first_task.should be_true
     end
 
   end

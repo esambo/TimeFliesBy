@@ -47,7 +47,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        if @task.no_stop_from_previous_on_now
+        if @task.first_task
           flash[:notice] = 'No previous task was found! Please check the start time.'
         else
           flash[:notice] = 'Task was successfully created.'
