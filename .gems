@@ -1,4 +1,4 @@
 validates_timeliness --version '>= 2.2.2'
-warden               --version '>= 0.10.3'
-devise               --version '>= 1.0.7'
+warden               --version     0.10.3
+devise               --version     1.0.7
 chronic_duration     --version '>= 0.9.1'
