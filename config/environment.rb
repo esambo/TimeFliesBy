@@ -20,8 +20,8 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem 'validates_timeliness', :version => '>= 2.2.2'
-  config.gem "warden", :version => "0.8.1"
-  config.gem "devise", :version => "0.8.2"
+  config.gem "warden", :version => "0.10.3"
+  config.gem "devise", :version => "1.0.7"
   config.gem "chronic_duration", :version => "0.9.1"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
