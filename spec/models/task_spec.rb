@@ -64,6 +64,13 @@ describe Task do
     t.should be_valid
   end
 
+  it "should have 1 minute duration" do
+    t = @valid_user.tasks.new
+    t.start = 1.minute.ago
+    t.stop = Time.now
+    t.duration.should == '1:00'
+  end
+
   context "with frozen time" do
     before :each do
       Time.now = "2010-01-03 9:13:23 AM" #freeze time using time_travel plugin

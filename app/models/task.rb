@@ -1,3 +1,5 @@
+require 'chronic_duration'
+
 class Task < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :user
@@ -9,6 +11,10 @@ class Task < ActiveRecord::Base
 
   def initial
     self.first_task = false
+  end
+
+  def duration
+    ChronicDuration.output((stop - start).round, :format => :chrono) if valid?
   end
 
   def now time = Time.now

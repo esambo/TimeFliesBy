@@ -22,6 +22,7 @@ Rails::Initializer.run do |config|
   config.gem 'validates_timeliness', :version => '>= 2.2.2'
   config.gem "warden", :version => "0.8.1"
   config.gem "devise", :version => "0.8.2"
+  config.gem "chronic_duration", :version => "0.9.1"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
