@@ -1,21 +1,16 @@
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
-  # Configure Devise modules used by default. You should always set this value
-  # because if Devise adds a new strategy, it won't be added to your application
-  # by default, unless you configure it here.
-  #
-  # Remember that Devise includes other modules on its own (like :activatable
-  # and :timeoutable) which are not included here and also plugins. So be sure
-  # to check the docs for a complete set.
-  config.all = [:authenticatable, :confirmable, :recoverable, :rememberable, :trackable, :validatable]
-
   # Configure the e-mail address which will be shown in DeviseMailer.
   config.mailer_sender = "TimeFliesBy <noreply@timefliesby.com>"
+  
+  # Configure the content type of DeviseMailer mails (defaults to text/html")
+  # config.mailer_content_type = "text/plain"
 
+  # ==> Configuration for :authenticatable
   # Invoke `rake secret` and use the printed value to setup a pepper to generate
   # the encrypted password. By default no pepper is used.
-  # config.pepper = "rake secret output"
+  config.pepper = "5772cedd58c8de601417e4f60cf5e2dd77f0ab2d2ac46ee3abc251e3b60f87ea14ceec362cdc58bb9a7283ccca1f326d6b344dbb7f6494351e218fbe30f6800a"
 
   # Configure how many times you want the password is reencrypted. Default is 10.
   # config.stretches = 10
@@ -25,7 +20,7 @@ Devise.setup do |config|
   # authentication tools as :clearance_sha1, :authlogic_sha512 (then you should set
   # stretches above to 20 for default behavior) and :restful_authentication_sha1
   # (then you should set stretches to 10, and copy REST_AUTH_SITE_KEY to pepper)
-  # config.encryptor = :sha1
+  config.encryptor = :bcrypt
 
   # Configure which keys are used when authenticating an user. By default is
   # just :email. You can configure it to use [:username, :subdomain], so for
@@ -34,18 +29,43 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # config.authentication_keys = [ :email ]
 
+  # The realm used in Http Basic Authentication
+  # config.http_authentication_realm = "Application"
+
+  # ==> Configuration for :confirmable
   # The time you want give to your user to confirm his account. During this time
   # he will be able to access your application without confirming. Default is nil.
   config.confirm_within = 2.days
 
+  # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
   config.remember_for = 2.years
 
+  # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again.
   # config.timeout_in = 10.minutes
 
-  # Load and configure the ORM. Supports :active_record, :data_mapper and :mongo_mapper.
+  # ==> Configuration for :lockable
+  # Number of authentication tries before locking an account.
+  config.maximum_attempts = 5
+
+  # Defines which strategy will be used to unlock an account.
+  # :email = Sends an unlock link to the user email
+  # :time  = Reanables login after a certain ammount of time (see :unlock_in below)
+  # :both  = enables both strategies
+  config.unlock_strategy = :both
+
+  # Time interval to unlock the account if :time is enabled as unlock_strategy.
+  config.unlock_in = 1.hour
+
+  # ==> Configuration for :token_authenticatable
+  # Defines name of the authentication token params key
+  config.token_authentication_key = :auth_token
+
+  # ==> General configuration
+  # Load and configure the ORM. Supports :active_record (default), :mongo_mapper
+  # (requires mongo_ext installed) and :data_mapper (experimental).
   # require 'devise/orm/mongo_mapper'
   # config.orm = :mongo_mapper
 
@@ -79,7 +99,6 @@ Devise.setup do |config|
 
   # Configure default_url_options if you are using dynamic segments in :path_prefix
   # for devise_for.
-  #
   # config.default_url_options do
   #   { :locale => I18n.locale }
   # end
