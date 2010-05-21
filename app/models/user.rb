@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
-  devise :all
-  # Setup accessible (or protected) attributes for your model
+  devise :database_authenticatable, :confirmable, :recoverable, :registerable, :rememberable, :trackable, :validatable, :lockable
   attr_accessible :email, :password, :password_confirmation
-
   has_many :tasks
 end
