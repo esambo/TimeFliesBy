@@ -1,30 +1,31 @@
 <% title 'Show task' -%>
 
+<p id="notice"><%= notice %></p>
+
 <p>
   <b>Title:</b>
-  <%=h @task.title %>
+  <%= @task.title %>
 </p>
 
 <p>
   <b>Duration:</b>
-  <%=h @task.duration %>
+  <%= @task.duration %>
 </p>
 
 <p>
   <b>Start:</b>
-  <%=h @task.start %>
+  <%= @task.start %>
 </p>
 
 <p>
   <b>Stop:</b>
-  <%=h @task.stop %>
+  <%= @task.stop %>
 </p>
 
 <p>
   <b>Description:</b>
-  <%=h @task.description %>
+  <%= @task.description %>
 </p>
-
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>

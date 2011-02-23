@@ -1,5 +1,4 @@
 require 'spec_helper'
-require "devise/test_helpers"
 
 describe TasksController do
 
@@ -13,69 +12,76 @@ describe TasksController do
     end
 
     def mock_task(stubs={})
-      @mock_task ||= mock_model(Task, stubs)
+      @mock_task ||= mock_model(Task, stubs) #.as_null_object
     end
 
     describe "GET index" do
       it "assigns all tasks as @tasks" do
-        Task.stub!(:find).with(:all).and_return([mock_task])
+      # Task.stub(:all) { [mock_task] }
+        controller.stub_chain(:current_user, :tasks, :all) { [mock_task] }
         get :index
-        assigns[:tasks].should == [mock_task]
+        assigns(:tasks).should eq([mock_task])
       end
     end
 
     describe "GET show" do
       it "assigns the requested task as @task" do
-        Task.stub!(:find).with("37", anything()).and_return(mock_task)
+      # Task.stub(:find).with("37") { mock_task }
+        controller.stub_chain(:current_user, :tasks, :find).with('37') { mock_task }
         get :show, :id => "37"
-        assigns[:task].should equal(mock_task)
+        assigns(:task).should be(mock_task)
       end
     end
 
     describe "GET new" do
       it "assigns a new task as @task" do
-        Task.stub!(:new).and_return(mock_task)
+      # Task.stub(:new) { mock_task }
+        controller.stub_chain(:current_user, :tasks, :new) { mock_task }
         get :new
-        assigns[:task].should equal(mock_task)
+        assigns(:task).should be(mock_task)
       end
     end
 
     describe "GET edit" do
       it "assigns the requested task as @task" do
-        Task.stub!(:find).with("37", anything()).and_return(mock_task)
+      # Task.stub(:find).with("37") { mock_task }
+        controller.stub_chain(:current_user, :tasks, :find).with('37') { mock_task }
         get :edit, :id => "37"
-        assigns[:task].should equal(mock_task)
+        assigns(:task).should be(mock_task)
       end
     end
 
     describe "POST create" do
-
       describe "with valid params" do
         it "assigns a newly created task as @task" do
           start = Time.now
-          Task.stub!(:new).with({'start' => start}).and_return(mock_task(:save => true))
-          task = mock_task(:start => start)
-          task.should_receive(:first_task).and_return(false)
+        # Task.stub(:new).with({'start' => start}) { mock_task(:save => true) }
+          controller.stub_chain(:current_user, :tasks, :new).with('start' => start) { mock_task(:save => true, :start => start, :first_task => false) }
           @controller.instance_eval{flash.stub!(:sweep)}
-          post :create, :task => {:start => start}
-          assigns[:task].should equal(mock_task)
+          post :create, :task => {'start' => start}
+          assigns(:task).should be(mock_task)
           flash.should include(:notice => 'Task was successfully created.')
         end
 
         it "when using NOW" do
-          Task.stub!(:new).and_return(mock_task(:save => true))
-          task = mock_task()
-          task.should_receive(:now)
-          task.should_receive(:first_task).and_return(true)
+        # Task.stub(:new) { mock_task(:save => true) }
+          controller.stub_chain(:current_user, :tasks, :new) { mock_task(:now => nil, :save => true, :first_task => false) }
+          @controller.instance_eval{flash.stub!(:sweep)}
+          post :create, :commit => 'Now'
+          flash.should include(:notice => 'Task was successfully created.')
+        end
+
+        it "when using NOW on the first task" do
+        # Task.stub(:new) { mock_task(:save => true) }
+          controller.stub_chain(:current_user, :tasks, :new) { mock_task(:now => nil, :save => true, :first_task => true) }
           @controller.instance_eval{flash.stub!(:sweep)}
           post :create, :commit => 'Now'
           flash.should include(:notice => 'No previous task was found! Please check the start time.')
         end
 
         it "redirects to the created task" do
-          Task.stub!(:new).and_return(mock_task(:save => true))
-          task = mock_task
-          task.should_receive(:first_task).and_return(false)
+        # Task.stub(:new) { mock_task(:save => true) }
+          controller.stub_chain(:current_user, :tasks, :new) { mock_task(:save => true, :first_task => true) }
           post :create, :task => {}
           response.should redirect_to(task_url(mock_task))
         end
@@ -83,73 +89,73 @@ describe TasksController do
 
       describe "with invalid params" do
         it "assigns a newly created but unsaved task as @task" do
-          Task.stub!(:new).with({'these' => 'params'}).and_return(mock_task(:save => false))
-          post :create, :task => {:these => 'params'}
-          assigns[:task].should equal(mock_task)
+        # Task.stub(:new).with({'these' => 'params'}) { mock_task(:save => false) }
+          controller.stub_chain(:current_user, :tasks, :new).with('these' => 'params') { mock_task(:save => false) }
+          post :create, :task => {'these' => 'params'}
+          assigns(:task).should be(mock_task)
         end
 
         it "re-renders the 'new' template" do
-          Task.stub!(:new).and_return(mock_task(:save => false))
+        # Task.stub(:new) { mock_task(:save => false) }
+          controller.stub_chain(:current_user, :tasks, :new) { mock_task(:save => false) }
           post :create, :task => {}
-          response.should render_template('new')
+          response.should render_template("new")
         end
       end
-
     end
 
     describe "PUT update" do
-
       describe "with valid params" do
         it "updates the requested task" do
-          Task.should_receive(:find).with("37", anything()).and_return(mock_task)
+        # Task.stub(:find).with("37") { mock_task }
+          controller.stub_chain(:current_user, :tasks, :find).with('37') { mock_task }
           mock_task.should_receive(:update_attributes).with({'these' => 'params'})
-          put :update, :id => "37", :task => {:these => 'params'}
+         put :update, :id => "37", :task => {'these' => 'params'}
         end
 
         it "assigns the requested task as @task" do
-          Task.stub!(:find).and_return(mock_task(:update_attributes => true))
+        # Task.stub(:find) { mock_task(:update_attributes => true) }
+          controller.stub_chain(:current_user, :tasks, :find) { mock_task(:update_attributes => true) }
           put :update, :id => "1"
-          assigns[:task].should equal(mock_task)
-        end
+         assigns(:task).should be(mock_task)
+       end
 
         it "redirects to the task" do
-          Task.stub!(:find).and_return(mock_task(:update_attributes => true))
+        # Task.stub(:find) { mock_task(:update_attributes => true) }
+          controller.stub_chain(:current_user, :tasks, :find) { mock_task(:update_attributes => true) }
           put :update, :id => "1"
           response.should redirect_to(task_url(mock_task))
         end
       end
 
       describe "with invalid params" do
-        it "updates the requested task" do
-          Task.should_receive(:find).with("37", anything()).and_return(mock_task)
-          mock_task.should_receive(:update_attributes).with({'these' => 'params'})
-          put :update, :id => "37", :task => {:these => 'params'}
-        end
-
         it "assigns the task as @task" do
-          Task.stub!(:find).and_return(mock_task(:update_attributes => false))
+        # Task.stub(:find) { mock_task(:update_attributes => false) }
+          controller.stub_chain(:current_user, :tasks, :find) { mock_task(:update_attributes => false) }
           put :update, :id => "1"
-          assigns[:task].should equal(mock_task)
+          assigns(:task).should be(mock_task)
         end
 
         it "re-renders the 'edit' template" do
-          Task.stub!(:find).and_return(mock_task(:update_attributes => false))
+        # Task.stub(:find) { mock_task(:update_attributes => false) }
+          controller.stub_chain(:current_user, :tasks, :find) { mock_task(:update_attributes => false) }
           put :update, :id => "1"
-          response.should render_template('edit')
+          response.should render_template("edit")
         end
       end
-
     end
 
     describe "DELETE destroy" do
       it "destroys the requested task" do
-        Task.should_receive(:find).with("37", anything()).and_return(mock_task)
+      # Task.stub(:find).with("37") { mock_task }
+        controller.stub_chain(:current_user, :tasks, :find).with('37') { mock_task }
         mock_task.should_receive(:destroy)
         delete :destroy, :id => "37"
       end
 
       it "redirects to the tasks list" do
-        Task.stub!(:find).and_return(mock_task(:destroy => true))
+      # Task.stub(:find) { mock_task }
+        controller.stub_chain(:current_user, :tasks, :find) { mock_task }
         delete :destroy, :id => "1"
         response.should redirect_to(tasks_url)
       end

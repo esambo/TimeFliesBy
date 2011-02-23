@@ -8,8 +8,8 @@ Feature: Task stop greater than start or blank
 
   Scenario: Validation error for stop before start
     Given I am on the new task page
-    When I fill in "start" with "1/21/2010 8:38 PM"
-    When I fill in "stop" with "1/21/2010 8:30 PM"
+    When I fill in "task_start" with "1/21/2010 8:38 PM"
+    When I fill in "task_stop" with "1/21/2010 8:30 PM"
     And I press "Create"
     Then I should see "Stop needs to be greater than start."
 

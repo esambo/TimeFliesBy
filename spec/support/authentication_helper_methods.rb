@@ -16,11 +16,11 @@ module AuthenticationHelperMethods
 
   def sign_in_as_user(options={}, &block)
     visit new_user_session_path unless    options[:visit]           == false
-    fill_in 'email',            :with =>  options[:email]           || 'test@timefliesby.com'
-    fill_in 'password',         :with =>  options[:password]        || 'secret'
-    check 'remember me'         if        options[:remember_me]     == true
+    fill_in 'user_email',       :with =>  options[:email]           || 'test@timefliesby.com'
+    fill_in 'user_password',    :with =>  options[:password]        || 'secret'
+    check   'user_remember_me'  if        options[:remember_me]     == true
     yield                       if        block_given?
-    click_button 'Sign In'
+    click_button 'Sign in'
   end
 
   def sign_in_as_new_user(options={}, &block)
@@ -33,3 +33,5 @@ module AuthenticationHelperMethods
   end
 
 end
+
+# Alternative: Stub Warden: http://stackoverflow.com/questions/4212355/testing-controllers-in-rails-3-with-devise-and-rspec

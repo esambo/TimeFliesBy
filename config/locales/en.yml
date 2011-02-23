@@ -2,4 +2,12 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  time:
+    formats:
+      nice: "%-m/%-d/%Y %H:%M:%S"
+      nicer: "%-m/%-d/%Y %l:%M:%S %p"
+
+# Based on: https://github.com/svenfuchs/rails-i18n/raw/master/rails/locale/en-US.yml
+# Rails Views l: http://guides.rubyonrails.org/i18n.html#adding-date-time-formats
+# MSDN strftime: http://msdn.microsoft.com/en-us/library/fe06s4ak.aspx
+# PHP  strftime: http://php.net/manual/en/function.strftime.php

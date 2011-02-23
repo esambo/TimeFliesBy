@@ -17,4 +17,4 @@ http://www.timefliesby.com
 
 == LICENSE:
 
-Copyright (c) 2009 Emmanuel Sambo, released under the MIT license
+Copyright (c) 2011 Emmanuel Sambo, released under the MIT license

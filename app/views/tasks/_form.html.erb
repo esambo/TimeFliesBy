@@ -1,24 +1,38 @@
-<%= f.error_messages %>
+<%= form_for(@task) do |f| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-<p>
-  <%= f.label :title %><br />
-  <%= f.text_field :title %>
-</p>
-<p>
-  <%= f.label :start %><br />
-  <%# f.datetime_select :start %>
-  <%= f.text_field :start %>
-</p>
-<p>
-  <%= f.label :stop %><br />
-  <%# f.datetime_select :stop %>
-  <%= f.text_field :stop %>
-</p>
-<p>
-  <%= f.label :description %><br />
-  <%= f.text_area :description %>
-</p>
-<p>
-  <%= f.submit submit_label %><br />
-  <%= f.submit 'Now' %>
-</p>
+      <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :start %><br />
+    <%#= f.datetime_select :start %>
+    <%#= f.text_field :start #Can't seem to find value! %>
+    <%= text_field_tag 'task[start]', @task.start.nil? ? nil : l(@task.start, :format => :nice), :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :stop %><br />
+    <%#= f.datetime_select :stop %>
+    <%#= f.text_field :stop #Can't seem to find value! %>
+    <%= text_field_tag 'task[stop]', @task.stop.nil? ? nil : l(@task.stop, :format => :nice), :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %><br />
+    <%= f.submit 'Now' %>
+  </div>
+<% end %>

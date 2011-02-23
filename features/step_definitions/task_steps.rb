@@ -16,10 +16,10 @@ end
 
 
 When /^I fill in all required fields$/ do
-  fill_in(:start, :with => "12/28/2009 2:30 PM")
-  fill_in(:stop,  :with => "12/28/2009 2:30 PM")
+  fill_in 'task_start', :with => I18n.l(Time.zone.now, :format => :nice)
+  fill_in 'task_stop',  :with => I18n.l(Time.zone.now, :format => :nice)
 end
 
 When /^it is "([^\"]*)"$/ do |datetime|
-  Time.now = Time.parse(datetime)
+  Time.now = Timeliness.parse datetime #parse m/d/yy in US format
 end

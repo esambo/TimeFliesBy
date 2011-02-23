@@ -13,12 +13,12 @@ Feature: Authentication
   Scenario: Register as new user
     Given I am on the home page
     And I follow "Register"
-    And I fill in "email" with "test@timefliesby.com"
-    And I fill in "password" with "secret"
-    And I fill in "password confirmation" with "secret"
+    And I fill in "user_email" with "test@timefliesby.com"
+    And I fill in "user_password" with "secret"
+    And I fill in "user_password_confirmation" with "secret"
     When I press "Register"
     Then I should be on the home page
-    And I should see "You will receive an email with instructions about how to confirm your account in a few minutes."
+    And I should see "You have registered successfully. A confirmation was sent to your e-mail."
 
   Scenario: Verify email
     Given I registered as a new user
@@ -30,8 +30,8 @@ Feature: Authentication
     Given I am a registered user
     And I am on the home page
     And I follow "Sign in"
-    And I fill in "email" with "test@timefliesby.com"
-    And I fill in "password" with "secret"
+    And I fill in "user_email" with "test@timefliesby.com"
+    And I fill in "user_password" with "secret"
     When I press "Sign in"
     Then I should see "Signed in successfully."
 

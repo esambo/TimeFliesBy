@@ -1,17 +1,11 @@
 require 'spec_helper'
 
-describe "/tasks/show.html.erb" do
-  include TasksHelper
+describe "tasks/show.html.erb" do
   before(:each) do
-    assigns[:task] = @task = stub_model(Task,
-      :title => "value for title",
-      :description => "value for description"
-    )
+    @task = assign(:task, stub_model(Task))
   end
 
   it "renders attributes in <p>" do
     render
-    response.should have_text(/value\ for\ title/)
-    response.should have_text(/value\ for\ description/)
   end
 end

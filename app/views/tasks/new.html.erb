@@ -1,7 +1,5 @@
 <% title 'New task' -%>
 
-<% form_for(@task) do |f| %>
-    <%= render :partial => 'form', :locals => { :f => f, :submit_label => 'Create' } %>
-<% end %>
+<%= render 'form' %>
 
 <%= link_to 'Back', tasks_path %>
