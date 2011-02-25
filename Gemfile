@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.4'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -16,7 +16,7 @@ gem 'devise'
 
 
 group :development do
-  gem "rspec-rails", "~> 2.4"
+  gem "rspec-rails"
   gem 'passenger'
   gem 'autotest-growl'   if RUBY_PLATFORM =~ /darwin/
   gem 'autotest-fsevent' if RUBY_PLATFORM =~ /darwin/
@@ -27,7 +27,7 @@ group :development do
 end
 
 group :test do
-  gem "rspec-rails", "~> 2.4"
+  gem "rspec-rails"
   gem 'cucumber-rails'
   gem 'capybara'
   gem 'database_cleaner'
