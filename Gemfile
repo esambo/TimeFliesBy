@@ -15,30 +15,30 @@ gem 'devise'
 # gem 'delocalize'
 
 
-# group :development do
-#   gem "rspec-rails"
-#   gem 'passenger'
-#   gem 'autotest-growl'   if RUBY_PLATFORM =~ /darwin/
-#   gem 'autotest-fsevent' if RUBY_PLATFORM =~ /darwin/
-#   gem 'heroku'
-#   # gem 'legacy_migrations', 
-#   #       :git    => 'git://github.com/btelles/legacy_migrations.git',
-#   #       :branch => 'rails3'
-# end
-# 
-# group :test do
-#   gem "rspec-rails"
-#   gem 'cucumber-rails'
-#   gem 'capybara'
-#   gem 'database_cleaner'
-#   gem 'email_spec'
-#   gem 'spork'
-#   gem 'autotest'
-#   gem 'time_travel'
-#   gem 'syntax'
-#   gem 'ruby-debug-base19'
-#   gem 'ruby-debug-ide'
-# end
+group :development do
+  gem "rspec-rails"
+  gem 'passenger'
+  gem 'autotest-growl'   if RUBY_PLATFORM =~ /darwin/
+  gem 'autotest-fsevent' if RUBY_PLATFORM =~ /darwin/
+  gem 'heroku'
+  # gem 'legacy_migrations', 
+  #       :git    => 'git://github.com/btelles/legacy_migrations.git',
+  #       :branch => 'rails3'
+end
+
+group :test do
+  gem "rspec-rails"
+  gem 'cucumber-rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'email_spec'
+  gem 'spork'
+  gem 'autotest'
+  gem 'time_travel'
+  gem 'syntax'
+  gem 'ruby-debug-base19'
+  gem 'ruby-debug-ide'
+end
 
 # Use unicorn as the web server
 # gem 'unicorn'
