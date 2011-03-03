@@ -21,7 +21,7 @@ Feature: Task Now
     Given it is "1/3/2010 8:13:23 AM"
     And I am on the new task page
     When I press "Now"
-    Then I should see "No previous task was found! Please check the start time."
+    Then I should see "Task was successfully created."
     And I should see "2010-01-03 08:13:23 -0600"
 
   @time_travel

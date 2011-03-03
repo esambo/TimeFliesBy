@@ -71,25 +71,6 @@ describe Task do
     t.duration.should == '1:00'
   end
 
-  it "should set #first_task to false after #now if it is not the first task" do
-    prev_t = @valid_user.tasks.create! :start => 5.minutes.ago, :stop => 4.minutes.ago
-    t = @valid_user.tasks.new
-    t.now
-    t.first_task.should == false
-  end
-
-  it "should set #first_task to true after #now if it is the first task" do
-    t = @valid_user.tasks.new
-    t.now
-    t.first_task.should == true
-  end
-
-#  # I don't really care about that, but it now works!
-#  it "should default #first_task to false for new tasks" do
-#    t = @valid_user.tasks.new
-#    t.first_task.should == false
-#  end
-
   context "with frozen time" do
     before :each do
       Time.now = "2010-01-03 9:13:23 AM" #freeze time using time_travel plugin
@@ -104,7 +85,6 @@ describe Task do
       t.now
       t.start.should == Time.zone.now
       t.stop.should == Time.zone.now
-      t.first_task.should be_true
     end
 
     it "should set stop to Time.zone.now when using #now() on new task" do
@@ -119,7 +99,6 @@ describe Task do
       t.now
       t.start.should be < Time.zone.now
       t.start.should == prev_t.stop
-      t.first_task.should be_false
     end
 
     it "should update stop when using #now() on an existing task" do
@@ -139,7 +118,6 @@ describe Task do
       t.now
       t.start.should == Time.zone.now
       t.start.should_not == prev_t.stop
-      t.first_task.should be_true
     end
 
   end

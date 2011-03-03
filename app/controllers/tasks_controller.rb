@@ -47,12 +47,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        if @task.first_task
-          flash[:notice] = 'No previous task was found! Please check the start time.'
-        else
-          flash[:notice] = 'Task was successfully created.'
-        end
-        format.html { redirect_to(@task) }
+        format.html { redirect_to(@task, :notice => 'Task was successfully created.') }
         format.xml  { render :xml => @task, :status => :created, :location => @task }
       else
         format.html { render :action => "new" }

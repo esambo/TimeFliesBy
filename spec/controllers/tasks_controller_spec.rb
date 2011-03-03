@@ -56,7 +56,7 @@ describe TasksController do
         it "assigns a newly created task as @task" do
           start = Time.now
         # Task.stub(:new).with({'start' => start}) { mock_task(:save => true) }
-          controller.stub_chain(:current_user, :tasks, :new).with('start' => start) { mock_task(:save => true, :start => start, :first_task => false) }
+          controller.stub_chain(:current_user, :tasks, :new).with('start' => start) { mock_task(:save => true, :start => start) }
           @controller.instance_eval{flash.stub!(:sweep)}
           post :create, :task => {'start' => start}
           assigns(:task).should be(mock_task)
@@ -65,23 +65,15 @@ describe TasksController do
 
         it "when using NOW" do
         # Task.stub(:new) { mock_task(:save => true) }
-          controller.stub_chain(:current_user, :tasks, :new) { mock_task(:now => nil, :save => true, :first_task => false) }
+          controller.stub_chain(:current_user, :tasks, :new) { mock_task(:now => nil, :save => true) }
           @controller.instance_eval{flash.stub!(:sweep)}
           post :create, :commit => 'Now'
           flash.should include(:notice => 'Task was successfully created.')
         end
 
-        it "when using NOW on the first task" do
-        # Task.stub(:new) { mock_task(:save => true) }
-          controller.stub_chain(:current_user, :tasks, :new) { mock_task(:now => nil, :save => true, :first_task => true) }
-          @controller.instance_eval{flash.stub!(:sweep)}
-          post :create, :commit => 'Now'
-          flash.should include(:notice => 'No previous task was found! Please check the start time.')
-        end
-
         it "redirects to the created task" do
         # Task.stub(:new) { mock_task(:save => true) }
-          controller.stub_chain(:current_user, :tasks, :new) { mock_task(:save => true, :first_task => true) }
+          controller.stub_chain(:current_user, :tasks, :new) { mock_task(:save => true) }
           post :create, :task => {}
           response.should redirect_to(task_url(mock_task))
         end
