@@ -16,7 +16,7 @@ gem 'devise'
 
 
 group :development do
-  gem "rspec-rails"
+  gem 'rspec-rails'
   gem 'passenger'
   gem 'autotest-growl'   if RUBY_PLATFORM =~ /darwin/
   gem 'autotest-fsevent' if RUBY_PLATFORM =~ /darwin/
@@ -27,7 +27,8 @@ group :development do
 end
 
 group :test do
-  gem "rspec-rails"
+  gem 'rspec-rails'
+  # gem 'rspec2-rails-views-matchers' #http://www.ruby-forum.com/topic/223220
   gem 'cucumber-rails'
   gem 'capybara'
   gem 'database_cleaner'
@@ -38,6 +39,8 @@ group :test do
   gem 'syntax'
   gem 'ruby-debug-base19'
   gem 'ruby-debug-ide'
+  # gem 'mofo', :git => 'git://github.com/halfbyte/mofo.git'
+  # gem 'hpricot', "~>0.8.2" #required by 'mofo'
 end
 
 # Use unicorn as the web server
