@@ -28,5 +28,5 @@ Feature: Task Time
     And I follow "Edit"
     When I press "Update"
     Then I should see "Task was successfully updated."
-    And I should see "2011-01-02 14:30:00 -0600"
-    And I should see "2011-01-02 14:31:00 -0600"
+    And I should see "1/2/2011 14:30:00"
+    And I should see "1/2/2011 14:31:00"

@@ -13,13 +13,19 @@
   </tr>
 
 <% @tasks.each do |task| %>
-  <tr>
-    <td class="rightSpace"><%= task.title %></td>
-    <td class="rightSpace"><%= task.duration %></td>
-    <td class="rightSpace"><%= task.start %></td>
-    <td class="rightSpace"><%= task.stop %></td>
-    <td class="rightSpace"><%= task.description %></td>
-    <td><%= link_to 'Show', task %></td>
+  <tr class="vevent">
+    <td class="rightSpace summary"><%= task.title %></td>
+    <td class="rightSpace duration"><%= task.duration %></td>
+    <td class="rightSpace dtstart">
+      <span class="value-title" title="<%= task.start.iso8601 %>"> </span>
+      <%= l(task.start, :format => :nice) %>
+    </td>
+    <td class="rightSpace dtend">
+      <span class="value-title" title="<%= task.stop.iso8601 %>"> </span>
+      <%= l(task.stop,  :format => :nice) %>
+    </td>
+    <td class="rightSpace description"><%= task.description %></td>
+    <td><%= link_to 'Show', task, :class => 'url' %></td>
     <td><%= link_to 'Edit', edit_task_path(task) %></td>
     <td><%= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

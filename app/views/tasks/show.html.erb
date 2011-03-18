@@ -2,30 +2,44 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @task.title %>
-</p>
+<div class="vevent">
+  <p>
+    <b>Title:</b>
+    <span class="summary">
+      <%= @task.title %>
+    </span>
+  </p>
 
-<p>
-  <b>Duration:</b>
-  <%= @task.duration %>
-</p>
+  <p>
+    <b>Duration:</b>
+    <span class="duration">
+      <%= @task.duration %>
+    </span>
+  </p>
 
-<p>
-  <b>Start:</b>
-  <%= @task.start %>
-</p>
+  <p>
+    <b>Start:</b>
+    <span class="dtstart">
+      <span class="value-title" title="<%= @task.start.iso8601 %>"> </span>
+      <%= l(@task.start, :format => :nice) %>
+    </span>
+  </p>
 
-<p>
-  <b>Stop:</b>
-  <%= @task.stop %>
-</p>
+  <p>
+    <b>Stop:</b>
+    <span class="dtend">
+      <span class="value-title" title="<%= @task.stop.iso8601 %>"> </span>
+      <%= l(@task.stop, :format => :nice) %>
+    </span>
+  </p>
 
-<p>
-  <b>Description:</b>
-  <%= @task.description %>
-</p>
+  <p>
+    <b>Description:</b>
+    <span class="description">
+      <%= @task.description %>
+    </span>
+  </p>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+  <%= link_to 'Edit', edit_task_path(@task), :class => 'url' %> |
+  <%= link_to 'Back', tasks_path %>
+</div>

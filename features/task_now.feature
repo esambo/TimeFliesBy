@@ -13,8 +13,8 @@ Feature: Task Now
     And I am on the new task page
     When I press "Now"
     Then I should see "Task was successfully created."
-    And I should see "2010-01-03 08:12:23 -0600"
-    And I should see "2010-01-03 08:13:23 -0600"
+    And I should see "1/3/2010 08:12:23"
+    And I should see "1/3/2010 08:13:23"
 
   @time_travel
   Scenario: Create a new task using 'Now' without having a previous task
@@ -22,7 +22,7 @@ Feature: Task Now
     And I am on the new task page
     When I press "Now"
     Then I should see "Task was successfully created."
-    And I should see "2010-01-03 08:13:23 -0600"
+    And I should see "1/3/2010 08:13:23"
 
   @time_travel
   Scenario: 'Now' on edit task
@@ -32,4 +32,4 @@ Feature: Task Now
     And I follow "Edit"
     Then I press "Now"
     Then I should see "Task was successfully updated."
-    And I should see "2010-01-03 08:13:23 -0600"
+    And I should see "1/3/2010 08:13:23"
