@@ -26,9 +26,19 @@ describe "tasks/show.html.erb" do
   it "has start time as a microformat hCalendar iso8601 datetime" do
     render
     assert_select '.vevent .dtstart .value-title' do |elements|
-      elements.each do |element|
-        element['title'].should include('2011-03-06T07:45:59-06:00')
-      end
+      elements[0]['title'].should include('2011-03-06T07:45:59-06:00')
+    end
+  end
+  
+  it "shows duration" do
+    render
+    assert_select '.vevent .duration', '5h 59m 1s'
+  end
+  
+  it "shows duration as microformat iso8601" do
+    render
+    assert_select '.vevent .duration .value-title' do |elements|
+      elements[0]['title'].should include('PT5H59M1S')
     end
   end
   

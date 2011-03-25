@@ -145,6 +145,8 @@ GEM
       ruby_core_source (>= 0.1.4)
     ruby-debug-ide (0.4.16)
       rake (>= 0.8.1)
+    ruby-duration (0.5.4)
+      i18n
     ruby_core_source (0.1.4)
       archive-tar-minitar (>= 0.5.2)
     rubyzip (0.9.4)
@@ -193,6 +195,7 @@ DEPENDENCIES
   rspec-rails
   ruby-debug-base19
   ruby-debug-ide
+  ruby-duration
   spork
   sqlite3-ruby
   syntax

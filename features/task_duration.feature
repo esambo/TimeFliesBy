@@ -9,4 +9,4 @@ Feature: Task Duration
   Scenario: 1 minute duration
     Given I have a task with "1 minute" duration
     When I am on the tasks page
-    Then I should see "1:00"
+    Then I should see "1m"

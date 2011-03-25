@@ -15,7 +15,10 @@
 <% @tasks.each do |task| %>
   <tr class="vevent">
     <td class="rightSpace summary"><%= task.title %></td>
-    <td class="rightSpace duration"><%= task.duration %></td>
+    <td class="rightSpace duration">
+      <span class="value-title" title="<%= Duration.new(task.duration).iso8601 %>"> </span>
+      <%= ChronicDuration.output task.duration, :format => :short %>
+    </td>
     <td class="rightSpace dtstart">
       <span class="value-title" title="<%= task.start.iso8601 %>"> </span>
       <%= l(task.start, :format => :nice) %>

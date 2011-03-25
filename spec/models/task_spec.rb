@@ -68,7 +68,7 @@ describe Task do
     t = @valid_user.tasks.new
     t.start = 1.minute.ago
     t.stop = Time.zone.now
-    t.duration.should == '1:00'
+    t.duration.should == 60
   end
 
   context "with frozen time" do

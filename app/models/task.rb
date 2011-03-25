@@ -9,7 +9,7 @@ class Task < ActiveRecord::Base
   validate :valid_stop
 
   def duration
-    ChronicDuration.output((self[:stop] - self[:start]).round, :format => :chrono) if valid?
+    self[:stop].to_i - self[:start].to_i
   end
 
   def now(time = Time.zone.now)

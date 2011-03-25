@@ -13,7 +13,8 @@
   <p>
     <b>Duration:</b>
     <span class="duration">
-      <%= @task.duration %>
+      <span class="value-title" title="<%= Duration.new(@task.stop - @task.start).iso8601 %>"> </span>
+      <%= ChronicDuration.output @task.duration, :format => :short %><br>
     </span>
   </p>
 
