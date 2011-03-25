@@ -14,33 +14,39 @@ describe "tasks/index.html.erb" do
     ])
   end
 
-  it "shows start in a nice format" do
-    render
-    rendered.should include('3/6/2011 07:45:59')
-  end
-  
-  it "shows start time as a microformat hCalendar" do
-    render
-    assert_select '.vevent .dtstart', '3/6/2011 07:45:59'
-  end
-  
-  it "has start time as a microformat hCalendar iso8601 datetime" do
-    render
-    assert_select '.vevent .dtstart .value-title' do |elements|
-      elements.second['title'].should include('2011-03-06T07:45:59-06:00')
+  describe "#start" do
+    it "shows nice format" do
+      render
+      rendered.should include('3/6/2011 07:45:59')
     end
+  
+    it "is in a Microformats hCalendar" do
+      render
+      assert_select '.vevent .dtstart', '3/6/2011 07:45:59'
+    end
+  
+    it "has a Microformats hCalendar iso8601 title" do
+      render
+      assert_select '.vevent .dtstart .value-title' do |elements|
+        elements.second['title'].should include('2011-03-06T07:45:59-06:00')
+      end
+    end
+
   end
 
-  it "shows duration" do
-    render
-    assert_select '.vevent .duration', '2h 59m 1s'
-  end
-  
-  it "shows duration as microformat iso8601" do
-    render
-    assert_select '.vevent .duration .value-title' do |elements|
-      elements[0]['title'].should include('PT2H59M1S')
+  describe "#duration" do
+    it "shows nice format" do
+      render
+      assert_select '.vevent .duration', '2h 59m 1s'
     end
+  
+    it "has a Microformats iso8601 title" do
+      render
+      assert_select '.vevent .duration .value-title' do |elements|
+        elements[0]['title'].should include('PT2H59M1S')
+      end
+    end
+  
   end
   
 end
