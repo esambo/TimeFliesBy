@@ -63,12 +63,12 @@ describe TasksController do
           flash.should include(:notice => 'Task was successfully created.')
         end
 
-        it "when using NOW" do
+        it "calls Task#now when NOW is used" do
         # Task.stub(:new) { mock_task(:save => true) }
-          controller.stub_chain(:current_user, :tasks, :new) { mock_task(:now => nil, :save => true) }
-          @controller.instance_eval{flash.stub!(:sweep)}
+          task = mock_task(:save => true)
+          task.should_receive(:now)
+          controller.stub_chain(:current_user, :tasks, :new) { task }
           post :create, :commit => 'Now'
-          flash.should include(:notice => 'Task was successfully created.')
         end
 
         it "redirects to the created task" do
