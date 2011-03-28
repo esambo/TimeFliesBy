@@ -64,7 +64,7 @@ describe Task do
     t.should be_valid
   end
 
-  it "should have 1 minute duration" do
+  it "calculates #duration in seconds" do
     t = @valid_user.tasks.new
     t.start = 1.minute.ago
     t.stop = Time.zone.now
