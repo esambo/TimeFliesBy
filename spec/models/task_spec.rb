@@ -41,6 +41,14 @@ describe Task do
     t.should_not be_valid
     t.errors[:stop].should_not be_blank
   end
+  
+  it "should not validate for 3 month old stop" do
+    t = @valid_user.tasks.new
+    t.start = 3.weeks.ago
+    t.stop = 4.months.ago
+    t.should_not be_valid
+    t.errors[:stop].should_not be_blank
+  end
 
   it "should require user" do
     t = Task.new
@@ -68,6 +76,14 @@ describe Task do
     t = @valid_user.tasks.new
     t.start = 1.minute.ago
     t.stop = Time.zone.now
+    t.duration.should == 60
+  end
+  
+  it "calculates #duration using the current time if stop is blank" do
+    t = @valid_user.tasks.new
+    t.start = 1.minute.ago
+    t.save!   #just to be save
+    t.reload  #just to be save
     t.duration.should == 60
   end
 

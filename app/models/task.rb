@@ -5,11 +5,10 @@ class Task < ActiveRecord::Base
   validates_presence_of :user
   validates_associated :user, :message => 'Bad user association' #Doesn't seem to do anything...
   validates_datetime :start, :on_or_after => '2000-01-01 08:00'
-  validates_datetime :stop,  :on_or_before => 3.months.from_now #, :allow_blank => true
   validate :valid_stop
 
   def duration
-    self[:stop].to_i - self[:start].to_i
+    (self[:stop].blank? ? Time.zone.now.to_i : self[:stop].to_i) - self[:start].to_i
   end
 
   def now(time = Time.zone.now)
@@ -26,8 +25,11 @@ class Task < ActiveRecord::Base
   end
 
   def valid_stop
-    if !self[:stop].blank? && self[:stop] < self[:start]
-      errors.add :stop, 'needs to be greater than start.'
+    unless self[:stop].blank?
+      validates_datetime :stop,  :on_or_before => 3.months.from_now #, :allow_blank => true
+      if self[:stop] < self[:start]
+        errors.add :stop, 'needs to be greater than start.'
+      end
     end
   end
 
