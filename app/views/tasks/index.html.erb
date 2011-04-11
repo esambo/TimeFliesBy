@@ -16,16 +16,16 @@
   <tr class="vevent">
     <td class="rightSpace summary"><%= task.title %></td>
     <td class="rightSpace duration">
-      <span class="value-title" title="<%= Duration.new(task.duration).iso8601 %>"> </span>
-      <%= ChronicDuration.output task.duration, :format => :short %>
+      <span class="value-title" title="<%= microformats_duration task.duration %>"> </span>
+      <%= human_duration task.duration %>
     </td>
     <td class="rightSpace dtstart">
-      <span class="value-title" title="<%= task.start.iso8601 %>"> </span>
-      <%= l(task.start, :format => :nice) %>
+      <span class="value-title" title="<%= microformats_datetime task.start %>"> </span>
+      <%= human_datetime task.start %>
     </td>
     <td class="rightSpace dtend">
-      <span class="value-title" title="<%= task.stop.iso8601 %>"> </span>
-      <%= l(task.stop,  :format => :nice) %>
+      <span class="value-title" title="<%= microformats_datetime task.stop %>"> </span>
+      <%= human_datetime task.stop %>
     </td>
     <td class="rightSpace description"><%= task.description %></td>
     <td><%= link_to 'Show', task, :class => 'url' %></td>

@@ -13,11 +13,11 @@ Feature: Task Time
     And I press "Create"
     Then I should see "Task was successfully created."
 
-  Scenario: Require start and stop time
+  Scenario: Require start
     Given I am on the new task page
     When I fill in "task_title" with "Bad test"
     And I press "Create"
-    Then I should see "Stop is not a valid datetime"
+    Then I should see "Start is not a valid datetime"
 
   Scenario: Update a task shows correct US time format
     Given I am on the new task page

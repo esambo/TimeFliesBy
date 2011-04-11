@@ -63,12 +63,12 @@ describe TasksController do
           flash.should include(:notice => 'Task was successfully created.')
         end
 
-        it "calls Task#now when NOW is used" do
+        it "calls Task#switch_now when SWITCH is used" do
         # Task.stub(:new) { mock_task(:save => true) }
           task = mock_task(:save => true)
-          task.should_receive(:now)
+          task.should_receive(:switch_now)
           controller.stub_chain(:current_user, :tasks, :new) { task }
-          post :create, :commit => 'Now'
+          post :create, :commit => 'Switch'
         end
 
         it "redirects to the created task" do

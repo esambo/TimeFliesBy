@@ -13,24 +13,24 @@
   <p>
     <b>Duration:</b>
     <span class="duration">
-      <span class="value-title" title="<%= Duration.new(@task.stop - @task.start).iso8601 %>"> </span>
-      <%= ChronicDuration.output @task.duration, :format => :short %><br>
+      <span class="value-title" title="<%= microformats_duration @task.duration %>"> </span>
+      <%= human_duration @task.duration %><br>
     </span>
   </p>
 
   <p>
     <b>Start:</b>
     <span class="dtstart">
-      <span class="value-title" title="<%= @task.start.iso8601 %>"> </span>
-      <%= l(@task.start, :format => :nice) %>
+      <span class="value-title" title="<%= microformats_datetime @task.start %>"> </span>
+      <%= human_datetime @task.start %>
     </span>
   </p>
 
   <p>
     <b>Stop:</b>
     <span class="dtend">
-      <span class="value-title" title="<%= @task.stop.iso8601 %>"> </span>
-      <%= l(@task.stop, :format => :nice) %>
+      <span class="value-title" title="<%= microformats_datetime @task.stop %>"> </span>
+      <%= human_datetime @task.stop %>
     </span>
   </p>
 
