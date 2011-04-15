@@ -18,7 +18,7 @@ Feature: Authentication
     And I fill in "user_password_confirmation" with "secret"
     When I press "Register"
     Then I should be on the home page
-    And I should see "You have registered successfully. A confirmation was sent to your e-mail."
+    And I should see "Welcome! You have registered successfully."
 
   Scenario: Verify email
     Given I registered as a new user
