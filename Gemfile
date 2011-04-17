@@ -20,8 +20,8 @@ group :development do
   # curl get.pow.cx | sh
   gem 'rspec-rails'
   gem 'passenger'
-  gem 'autotest-growl'   if RUBY_PLATFORM =~ /darwin/
-  gem 'autotest-fsevent' if RUBY_PLATFORM =~ /darwin/
+  gem 'autotest-growl'   # if RUBY_PLATFORM =~ /darwin/ # Heroku push rejected
+  gem 'autotest-fsevent' # if RUBY_PLATFORM =~ /darwin/ # Heroku push rejected
   gem 'heroku'
   # gem 'legacy_migrations', 
   #       :git    => 'git://github.com/btelles/legacy_migrations.git',
