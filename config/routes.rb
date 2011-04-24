@@ -4,6 +4,7 @@ Timefliesby::Application.routes.draw do
   resource   :user
 
   resources :tasks
+  resources :tags
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

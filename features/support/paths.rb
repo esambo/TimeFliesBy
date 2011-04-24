@@ -23,6 +23,10 @@ module NavigationHelpers
         new_task_path
       when /^the users sign in page$/i
         new_user_session_path #users/sign_in
+      when /^the tags page$/i
+        tags_path
+      when /^the new tag page$/i
+        new_tag_path
 
     else
       begin
