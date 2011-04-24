@@ -1,8 +1,7 @@
 Timefliesby::Application.routes.draw do
-  resources :tasks
 
   devise_for :users
-  resource :user
+  resource   :user
 
   resources :tasks
 
