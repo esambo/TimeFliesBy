@@ -37,8 +37,18 @@ describe TasksController do
       it "assigns a new task as @task" do
       # Task.stub(:new) { mock_task }
         controller.stub_chain(:current_user, :tasks, :new) { mock_task }
+        controller.stub_chain(:current_user, :tags,  :all) { }
         get :new
         assigns(:task).should be(mock_task)
+      end
+      
+      it "assigns all tags to @tags" do
+        tags = [mock_model(Tag), mock_model(Tag)]
+        controller.stub_chain(:current_user, :tasks, :new) { mock_task }
+        controller.stub_chain(:current_user, :tags,  :all) { tags }
+        controller.current_user.tags.should_receive(:all) { tags }
+        get :new
+        assigns(:tags).should == tags
       end
     end
 
@@ -46,8 +56,18 @@ describe TasksController do
       it "assigns the requested task as @task" do
       # Task.stub(:find).with("37") { mock_task }
         controller.stub_chain(:current_user, :tasks, :find).with('37') { mock_task }
+        controller.stub_chain(:current_user, :tags, :all) { }
         get :edit, :id => "37"
         assigns(:task).should be(mock_task)
+      end
+      
+      it "assigns all tags to @tags" do
+        tags = [mock_model(Tag), mock_model(Tag)]
+        controller.stub_chain(:current_user, :tasks, :find).with('37') { mock_task }
+        controller.stub_chain(:current_user, :tags, :all) { tags }
+        controller.current_user.tags.should_receive(:all) { tags }
+        get :edit, :id => "37"
+        assigns(:tags).should == tags
       end
     end
 
@@ -83,6 +103,7 @@ describe TasksController do
         it "assigns a newly created but unsaved task as @task" do
         # Task.stub(:new).with({'these' => 'params'}) { mock_task(:save => false) }
           controller.stub_chain(:current_user, :tasks, :new).with('these' => 'params') { mock_task(:save => false) }
+          controller.stub_chain(:current_user, :tags,  :all) { }
           post :create, :task => {'these' => 'params'}
           assigns(:task).should be(mock_task)
         end
@@ -90,8 +111,18 @@ describe TasksController do
         it "re-renders the 'new' template" do
         # Task.stub(:new) { mock_task(:save => false) }
           controller.stub_chain(:current_user, :tasks, :new) { mock_task(:save => false) }
+          controller.stub_chain(:current_user, :tags,  :all) { }
           post :create, :task => {}
           response.should render_template("new")
+        end
+        
+        it "assigns all tags to @tags" do
+          tags = [mock_model(Tag), mock_model(Tag)]
+          controller.stub_chain(:current_user, :tasks, :new) { mock_task(:save => false) }
+          controller.stub_chain(:current_user, :tags,  :all) { tags }
+          controller.current_user.tags.should_receive(:all) { tags }
+          post :create, :task => {}
+          assigns(:tags).should == tags
         end
       end
     end
@@ -100,8 +131,9 @@ describe TasksController do
       describe "with valid params" do
         it "updates the requested task" do
         # Task.stub(:find).with("37") { mock_task }
-          controller.stub_chain(:current_user, :tasks, :find).with('37') { mock_task }
-          mock_task.should_receive(:update_attributes).with({'these' => 'params'})
+          task = mock_task(:update_attributes => true)
+          task.should_receive(:update_attributes).with({'these' => 'params'}).and_return(true)
+          controller.stub_chain(:current_user, :tasks, :find).with('37') { task }
          put :update, :id => "37", :task => {'these' => 'params'}
         end
 
@@ -124,6 +156,7 @@ describe TasksController do
         it "assigns the task as @task" do
         # Task.stub(:find) { mock_task(:update_attributes => false) }
           controller.stub_chain(:current_user, :tasks, :find) { mock_task(:update_attributes => false) }
+          controller.stub_chain(:current_user, :tags,  :all) { }
           put :update, :id => "1"
           assigns(:task).should be(mock_task)
         end
@@ -131,8 +164,18 @@ describe TasksController do
         it "re-renders the 'edit' template" do
         # Task.stub(:find) { mock_task(:update_attributes => false) }
           controller.stub_chain(:current_user, :tasks, :find) { mock_task(:update_attributes => false) }
+          controller.stub_chain(:current_user, :tags,  :all) { }
           put :update, :id => "1"
           response.should render_template("edit")
+        end
+        
+        it "assigns all tags to @tags" do
+          tags = [mock_model(Tag), mock_model(Tag)]
+          controller.stub_chain(:current_user, :tasks, :find) { mock_task(:update_attributes => false) }
+          controller.stub_chain(:current_user, :tags,  :all) { tags }
+          controller.current_user.tags.should_receive(:all) { tags }
+          put :update, :id => "1"
+          assigns(:tags).should == tags
         end
       end
     end

@@ -9,7 +9,11 @@
     <th>Duration</th>
     <th>Start</th>
     <th>Stop</th>
+    <th>Tags</th>
     <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr>
 
 <% @tasks.each do |task| %>
@@ -26,6 +30,11 @@
     <td class="rightSpace dtend">
       <span class="value-title" title="<%= microformats_datetime task.stop %>"> </span>
       <%= human_datetime task.stop %>
+    </td>
+    <td class="rightSpace tags">
+      <% task.tags.each do |tag| %>
+        <%= link_to tag.name, tag, 'rel' => 'tag' %>
+      <% end %>
     </td>
     <td class="rightSpace description"><%= task.description %></td>
     <td><%= link_to 'Show', task, :class => 'url' %></td>

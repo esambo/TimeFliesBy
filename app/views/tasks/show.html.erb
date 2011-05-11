@@ -9,6 +9,15 @@
       <%= @task.title %>
     </span>
   </p>
+  
+  <p>
+    <b>Tags:</b>
+    <span class="tags">
+      <% @task.tags.each do |tag| %>
+        <%= link_to tag.name, tag, 'rel' => 'tag' %>
+      <% end %>
+    </span>
+  </p>
 
   <p>
     <b>Duration:</b>

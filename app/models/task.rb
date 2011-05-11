@@ -2,6 +2,8 @@ require 'chronic_duration'
 
 class Task < ActiveRecord::Base
   belongs_to :user
+  has_many :tag_tasks
+  has_many :tags, :through => :tag_tasks
   before_create :set_stop_on_last
   validates_presence_of :user
   validates_associated :user, :message => 'Bad user association' #Doesn't seem to do anything...

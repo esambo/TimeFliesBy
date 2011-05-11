@@ -16,6 +16,16 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
+    <%= f.label :tags %><br />
+    <% @tags.each do |tag| %>
+      <label>
+        <%= check_box_tag 'task[tag_ids][]', tag.id, @task.tags.include?(tag) %>
+        <%= tag.name %><br />
+      </label>
+    <% end %>
+    <%= hidden_field_tag 'task[tag_ids][]' %>
+  </div>
+  <div class="field">
     <%= f.label :start %><br />
     <%#= f.datetime_select :start %>
     <%#= f.text_field :start #Can't seem to find value! %>

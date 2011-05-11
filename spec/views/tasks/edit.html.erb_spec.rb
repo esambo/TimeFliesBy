@@ -3,6 +3,7 @@ require 'spec_helper'
 describe "tasks/edit.html.erb" do
   before(:each) do
     @task = assign(:task, stub_model(Task))
+    @tags = assign(:tags, [stub_model(Tag), stub_model(Tag)])
   end
 
   it "renders the edit task form" do

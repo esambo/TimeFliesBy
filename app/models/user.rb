@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :created_at
   
   has_many :tasks
+  has_many :tags
+  has_many :tag_tasks
 end

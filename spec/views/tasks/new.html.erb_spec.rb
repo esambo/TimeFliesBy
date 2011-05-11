@@ -3,6 +3,7 @@ require 'spec_helper'
 describe "tasks/new.html.erb" do
   before(:each) do
     assign(:task, stub_model(Task).as_new_record)
+    assign(:tags, [stub_model(Tag), stub_model(Tag)])
   end
 
   it "renders new task form" do

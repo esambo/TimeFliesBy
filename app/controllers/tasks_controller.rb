@@ -27,6 +27,7 @@ class TasksController < ApplicationController
   # GET /tasks/new.xml
   def new
     @task = current_user.tasks.new
+    @tags = current_user.tags.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,6 +38,7 @@ class TasksController < ApplicationController
   # GET /tasks/1/edit
   def edit
     @task = current_user.tasks.find(params[:id])
+    @tags = current_user.tags.all
   end
 
   # POST /tasks
@@ -50,6 +52,7 @@ class TasksController < ApplicationController
         format.html { redirect_to(@task, :notice => 'Task was successfully created.') }
         format.xml  { render :xml => @task, :status => :created, :location => @task }
       else
+        @tags = current_user.tags.all
         format.html { render :action => "new" }
         format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
       end
@@ -71,6 +74,7 @@ class TasksController < ApplicationController
         format.html { redirect_to(@task, :notice => 'Task was successfully updated.') }
         format.xml  { head :ok }
       else
+        @tags = current_user.tags.all
         format.html { render :action => "edit" }
         format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
       end
