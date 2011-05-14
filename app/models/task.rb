@@ -28,7 +28,7 @@ class Task < ActiveRecord::Base
     if previous_task
       previous_task.stop = self[:start]
       previous_task.save!
-    else
+    elsif self[:title] != 'Error: Time gap!'
       # previous_task = user.tasks.first(:order => "start DESC", :conditions => ["stop < ?", self[:start].to_s(:db)])
       previous_task = user.tasks.first(:order => "start DESC", :conditions => ["stop < ?", self[:start]])
       if previous_task
