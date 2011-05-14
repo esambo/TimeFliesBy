@@ -56,9 +56,9 @@ describe "tasks/index.html.erb" do
   end
   
   describe "#stop being blank" do
-    it "has no Microformats hCalendar value" do
+    it "has 'Active' in Microformats hCalendar value" do
       render
-      assert_select '.vevent .dtend', ''
+      assert_select '.vevent .dtend', 'Active'
     end
   
     it "has no Microformats hCalendar iso8601 title value" do

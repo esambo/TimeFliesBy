@@ -48,9 +48,9 @@ describe "tasks/show.html.erb" do
       assert_select '.vevent .dtend', '3/6/2011 13:45:00'
     end
     
-    it "has no Microformats hCalendar value if stop is empty" do
+    it "has 'Active' in Microformats hCalendar value if stop is empty" do
       render
-      assert_select '.vevent .dtend', ''
+      assert_select '.vevent .dtend', 'Active'
     end
 
     it "has a Microformats hCalendar iso8601 title" do

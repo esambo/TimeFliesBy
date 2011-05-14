@@ -97,29 +97,113 @@
 
 </style>
 
-<hr>
 <div id="content">
   <div id="header">
-    <h1>Time Flies By</h1>
-    <h2>Simple time tracking that works for me</h2>
+    <h1>TimeFliesBy.com</h1>
+    <h5>Simple time tracking that works for me</h5>
   </div>
 
-  <div id="history">
-    <h1>History</h1>
-    <h2>Why yet another time tracking app</h2>
+  <div>
+    <h2>Already know what you are doing?</h2>
+    <div style="padding:1em;">
+      <style type="text/css" media="screen">
+        /* http://www.skinyourscreen.com/site/Downloads/killer-css3-web-buttons 
+           Used style2 as big
+           Used style4:hover to be big:hover
+        */
 
+        a.big_button{text-decoration:none;paddin:25px;color:white;padding:12px;font-family:"Arvo";text-shadow:1px 1px 1px #444;text-align:center;width:140px;-webkit-border-radius:18px;-moz-border-radius:18px;border-radius:18px;-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;-moz-transition:all 0.3s ease-out;-o-transition:all 0.3s ease-out;-webkit-transition:all 0.3s ease-out;-ms-transition:all 0.3s ease-out;transition:all 0.3s ease-out;text-shadow:1px 1px 1px #021d35;border:1px solid #2c98f6;background-color:#59aef8;background-image:-moz-linear-gradient(19% 90% 90deg, #2c98f6, #0761b0, #59aef8 60%);background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#59aef8), to(#2c98f6), color-stop(0.6, #0761b0));background-image:-o-linear-gradient(top, #59aef8, #0761b0 50%, #2c98f6);background-image:linear-gradient(top, #59aef8, #2c98f6);-moz-box-shadow:inset 0px 3px 4px #ffffff,inset 0px 0px 6px #0761b0,0px 4px 15px #444444;-webkit-box-shadow:inset 0px 3px 4px #ffffff,inset 0px 0px 6px #0761b0,0px 4px 15px #444444;box-shadow:inset 0px 3px 4px #ffffff,inset 0px 0px 6px #0761b0,0px 4px 15px #444444;}
+
+        a.big_button:hover{text-decoration:none;paddin:25px;border:10px solid white;background-color:#2e9fe6;background-image:-webkit-gradient(linear, 0% 0%, 0% 81%, from(#b7def6), to(#5cb4eb), color-stop(0.6, #2e9fe6), color-stop(0.6, #1885c9));background-image:-moz-linear-gradient(100% 100% 90deg, #5cb4eb, #5cb4eb, #1885c9 48%, #2e9fe6 48%, #b7def6 100%);background-image:-o-linear-gradient(top, #b7def6, #2e9fe6 48%, #1885c9 49%, #5cb4eb);background-image:linear-gradient(top, #b7def6, #2e9fe6 48%, #1885c9 49%, #5cb4eb);-moz-box-shadow:inset 0 0 7px #1885c9,inset 0 0 3px #1885c9,0 4px 15px #1576b2;-webkit-box-shadow:inset 0 0 7px #1885c9,inset 0 0 3px #1885c9,0 4px 15px #1576b2;box-shadow:inset 0 0 7px #1885c9,inset 0 0 3px #1885c9,0 4px 15px #1576b2;}
+
+      </style>
+      <%= link_to 'New Task', new_task_path, :class => 'big_button' %>
+    </div>
+  </div>
+  
+  <div>
+    <h2>How it works</h2>
     <ol>
       <li>
         <h2>Simple</h2>
-        <p>Simple to use, simple to set up.</p>
+        <h4>Quick and Easy</h4>
+        <ul>
+          <li>
+            Create a <%= link_to 'New Task', new_task_path %>.
+          </li>
+          <li>
+            Enter a title and click "Switch Now" to start the timer.
+          </li>
+          <li>
+            When finished with the current task, create a <%= link_to 'New Task', new_task_path %>.
+          </li>
+          <li>
+            TimeFliesBy.com automatically ends the previous task for you.
+          </li>
+          <li>
+            Any time you want to see your progress, click <%= link_to 'Tasks Summary', tasks_path %>.
+          </li>
+        </ul>
       </li>
-
       <li>
-        <h2>Extensible</h2>
-        <p>I needed to integrate it with an issue tracker app</p>
+        <h2>Flexible</h2>
+        <h4>Unlimited Tags</h4>
+        <ul>
+          <li>
+            Create some <%= link_to 'Tags', new_tag_path %> up front, e.g.
+            <ul>
+              <li>Work</li>
+              <li>Family</li>
+              <li>Personal</li>
+              <li>Household</li>
+              <li>Play</li>
+              <li>etc.</li>
+            </ul>
+          </li>
+          <li>
+            Use them in your <%= link_to 'New Task', new_task_path %> or "Edit" in <%= link_to 'Tasks Summary', tasks_path %>.
+          </li>
+        </ul>
+        <h4>You are in control</h4>
+        <ul>
+          <li>
+            You can manually adjust the start and stop any time.
+          </li>
+          <li>
+            We call this fudging.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h2>Streamlined</h2>
+        <h4>Efficient Task Switching</h4>
+        <ul>
+          <li>
+            Starting a <%= link_to 'new task', new_task_path %> automatically ends the current task and starts the new one.
+          </li>
+          <li>
+            Keep creating a <%= link_to 'new task', new_task_path %> to create a continuous timeline.
+          </li>
+          <li>
+            You can effectively track your whole life, but who would want to besides me?
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h2>Tick-Tock</h2>
+        <h4>Goes the Clock</h4>
+        <ul>
+          <li>
+            Time doesn't stop even though you may want to stop tracking it.
+          </li>
+          <li>
+            Create a dummy filler task and let it run until you are ready to track again.
+          </li>
+        </ul>
       </li>
     </ol>
   </div>
+
 </div>
 
 <div id="sidebar">
@@ -127,9 +211,15 @@
     <li>
       <h3>Resources</h3>
       <ul class="links">
+        <li>
+          <a href="http://relishapp.com/esambo/timefliesby"><img src="images/relish_smaller.png" alt="RelishApp" border="0"> Features</a>
+        </li>
         <li><a href="http://github.com/esambo/TimeFliesBy"><img src="images/GitHub.ico" alt="GitHub" border="0"> Source Code</a></li>
         <li><a href="http://www.pivotaltracker.com/projects/34616"><img src="images/Pivotal_Tracker.ico" alt="Pivotal Tracker" border="0"> Stories</a></li>
         <li><strong>Email:</strong> support at timefliesby dot com</li>
+        <li>
+          <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="TFliesBy">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script> if you like this
+        </li>
       </ul>
     </li>
   </ul>
@@ -144,13 +234,13 @@
           height: 300,
           theme: {
             shell: {
-              background: '#434fd1',
-              color: '#000000'
+              background: '#CCC',
+              color: '#666'
             },
             tweets: {
-              background: '#ffffff',
-              color: '#992f99',
-              links: '#329408'
+              background: '#FFF',
+              color: '#039',
+              links: '#999'
             }
           },
           features: {
@@ -165,5 +255,7 @@
         }).render().setUser('TFliesBy').start();
     </script>
 </div>
-
-<div id="footer">&nbsp;</div>
+<div id="footer">
+  <hr>
+  Copyright &copy; 2011 Emmanuel Sambo, released under the MIT license
+</div>

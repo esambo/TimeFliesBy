@@ -34,7 +34,17 @@ describe TasksHelper do
     end
     
     it "should handle nil" do
-      human_datetime(nil).should == nil
+      human_datetime(nil).should == 'Active'
+    end
+  end
+  
+  describe "#editable_datetime" do
+    it "should use normal US format" do
+      editable_datetime(Time.zone.parse("11 Apr 2011 06:14:01 CDT -05:00")).should == '4/11/2011 06:14:01'
+    end
+    
+    it "should show 'Active' when blank" do
+      editable_datetime(nil).should == nil
     end
   end
   

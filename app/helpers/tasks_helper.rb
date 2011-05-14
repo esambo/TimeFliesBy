@@ -12,8 +12,16 @@ module TasksHelper
     Duration.new(seconds).iso8601
   end
   
-  def human_datetime(date_and_time)
+  def editable_datetime(date_and_time)
     I18n.l(date_and_time, :format => :nice) unless date_and_time.nil?
+  end
+  
+  def human_datetime(date_and_time)
+    if date_and_time.nil?
+      'Active'
+    else
+      editable_datetime date_and_time
+    end
   end
   
   def microformats_datetime(date_and_time)

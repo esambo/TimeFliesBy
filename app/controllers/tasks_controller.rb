@@ -45,7 +45,7 @@ class TasksController < ApplicationController
   # POST /tasks.xml
   def create
     @task = current_user.tasks.new(params[:task])
-    @task.switch_now if params[:commit] == 'Switch'
+    @task.switch_now if params[:commit] == 'Switch Now'
 
     respond_to do |format|
       if @task.save
@@ -63,7 +63,7 @@ class TasksController < ApplicationController
   # PUT /tasks/1.xml
   def update
     @task = current_user.tasks.find(params[:id])
-    if params[:commit] == 'Switch'
+    if params[:commit] == 'Switch Now'
       @task.switch_now
       params[:task] ||= {}
       params[:task][:stop] = @task.stop

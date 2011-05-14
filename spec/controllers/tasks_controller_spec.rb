@@ -88,7 +88,7 @@ describe TasksController do
           task = mock_task(:save => true)
           task.should_receive(:switch_now)
           controller.stub_chain(:current_user, :tasks, :new) { task }
-          post :create, :commit => 'Switch'
+          post :create, :commit => 'Switch Now'
         end
 
         it "redirects to the created task" do

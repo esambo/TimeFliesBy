@@ -16,6 +16,10 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :rows => 2 %>
+  </div>
+  <div class="field">
     <%= f.label :tags %><br />
     <% @tags.each do |tag| %>
       <label>
@@ -25,27 +29,37 @@
     <% end %>
     <%= hidden_field_tag 'task[tag_ids][]' %>
   </div>
+  <div class="actions">
+    <% if @task.new_record? %>
+      <%= f.submit 'Switch Now' %>
+    <% else %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+  <hr>
+  <h2>Fudge Factor</h2>
+  <p>
+    In this section you may manually enter the date and time.
+  </p>
+  <p>
+    Yes, we provide automatic time tracking but sometimes, you know, you just have to FUDGE.
+  </p>
+  <p>
+    No questions asked.
+  </p>
   <div class="field">
     <%= f.label :start %><br />
     <%#= f.datetime_select :start %>
     <%#= f.text_field :start #Can't seem to find value! %>
-    <%= text_field_tag 'task[start]', human_datetime(@task.start), :size => 30 %>
+    <%= text_field_tag 'task[start]', editable_datetime(@task.start), :size => 30 %>
   </div>
   <div class="field">
     <%= f.label :stop %><br />
     <%#= f.datetime_select :stop %>
     <%#= f.text_field :stop #Can't seem to find value! %>
-    <%= text_field_tag 'task[stop]', human_datetime(@task.stop), :size => 30 %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= text_field_tag 'task[stop]', editable_datetime(@task.stop), :size => 30 %>
   </div>
   <div class="actions">
     <%= f.submit %>
-    <% if @task.new_record? %>
-      <br />
-      <%= f.submit 'Switch' %>
-    <% end %>
   </div>
 <% end %>
