@@ -23,6 +23,7 @@ group :development do
   gem 'autotest-growl'   # if RUBY_PLATFORM =~ /darwin/ # Heroku push rejected
   gem 'autotest-fsevent' # if RUBY_PLATFORM =~ /darwin/ # Heroku push rejected
   gem 'heroku'
+  gem 'relish'
   # gem 'legacy_migrations', 
   #       :git    => 'git://github.com/btelles/legacy_migrations.git',
   #       :branch => 'rails3'
