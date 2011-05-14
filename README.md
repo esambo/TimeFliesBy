@@ -16,15 +16,15 @@ Take [TimeFliesBy.com](http://www.timefliesby.com) out for a spin and see how yo
  * Easy task switching that uses the current time and automatically sets the stop time on the previous task
  * Tagging support for tasks (not yet nested tags)
  * Multi-user support
- * Authentication with email verification and strongly encrypted passwords
+ * Authentication with email verification and strongly encrypted passwords using [Devise](https://github.com/plataformatec/devise)
  * [Microformats](http://en.wikipedia.org/wiki/Microformat) [hCalendar](http://microformats.org/wiki/hcalendar) with [Rel-Tag](http://microformats.org/wiki/rel-tag)
  * [Rails](http://rubyonrails.org/) 3.0
- * [Ruby](http://en.wikipedia.org/wiki/Ruby_(programming_language)) 1.9.2
+ * [Ruby](http://en.wikipedia.org/wiki/Ruby_(programming_language) 1.9.2
  * Outside-in [Behavior Driven Development](http://behaviordrivendevelopment.wikispaces.com/)
  * [Cucumber](http://cukes.info/)
  * [RSpec](http://relishapp.com/rspec)
- * Open source code on github
- * Demo publicly accessible on easily scalable web hosting provider ([heroku](http://www.heroku.com/))
+ * Open source code on [github](https://github.com/)
+ * Demo publicly accessible on [heroku](http://www.heroku.com/)
  * Easy to remember domain name TimeFliesBy.com
 
 ## Resources
