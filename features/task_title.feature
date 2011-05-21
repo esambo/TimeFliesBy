@@ -1,8 +1,7 @@
 Feature: Task Title
-
-  In order to remember what I did
-  As a daily end user
-  I want to keep track of tasks
+  >In order to remember what I did  
+  As a daily end user  
+  I want to keep track of tasks  
 
   Background: Signed in
     Given I am signed in as a new user

@@ -1,7 +1,7 @@
-Feature: Task for each user
-  In order to support multiple users with their own time tracking
-  As a daily end user
-  I want to only see my own tasks
+Feature: Task for each User
+  >In order to support multiple users with their own time tracking  
+  As a daily end user  
+  I want to only see my own tasks  
 
   Scenario: Users should not see each others tasks
     Given I am signed in as a new user "test1@timefliesby.com"

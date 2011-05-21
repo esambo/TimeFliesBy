@@ -1,7 +1,7 @@
 Feature: Task Time
-  In order to see when a task was performed
-  As a troubleshooting user
-  I want to see the start date-time and stop date-time of a task
+  >In order to see when a task was performed  
+  As a troubleshooting user  
+  I want to see the start date-time and stop date-time of a task  
 
   Background: Signed in
     Given I am signed in as a new user

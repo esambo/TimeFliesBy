@@ -1,7 +1,7 @@
 Feature: Authentication
-  In order to allow multiple people from using the application independently
-  As a any kind of user
-  I want to have my data stored by my user ID
+  >In order to allow multiple people from using the application independently  
+  As a any kind of user  
+  I want to have my data stored by my user ID  
 
   Scenario: Authentication required
     Given I am on the home page

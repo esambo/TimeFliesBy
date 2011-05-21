@@ -1,7 +1,7 @@
 Feature: Task Duration
-  In order to get a feeling of what I am doing
-  As a daily end user
-  I want to see the duration of my current task
+  >In order to get a feeling of what I am doing  
+  As a daily end user  
+  I want to see the duration of my current task  
 
   Background: Signed in
     Given I am signed in as a new user
