@@ -1,7 +1,7 @@
 
 ## [TimeFliesBy.com](http://www.timefliesby.com)
 
-##### Simple time tracking that works for me
+*Simple time tracking that works for me*
 
 ## Demo
 
@@ -29,9 +29,9 @@ Take [TimeFliesBy.com](http://www.timefliesby.com) out for a spin and see how yo
 
 ## Resources
 
-* [timefliesby features on Relish](http://relishapp.com/esambo/timefliesby)
+* [TimeFliesBy features on Relish](http://relishapp.com/esambo/timefliesby)
+* [TimeFliesBy stories on Pivotal Tracker](http://www.pivotaltracker.com/projects/34616)
 * Twitter: [@TFliesBy](http://twitter.com/TFliesBy)
-* [TimeFliesBy on Pivotal Tracker](http://www.pivotaltracker.com/projects/34616)
 * Email: support at timefliesby dot com
 
 

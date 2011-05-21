@@ -6,6 +6,7 @@
 
 ## Resources
 
+* [TimeFliesBy source code on *GitHub*](https://github.com/esambo/TimeFliesBy)
+* [TimeFliesBy stories on *Pivotal Tracker*](http://www.pivotaltracker.com/projects/34616)
 * Twitter: [@TFliesBy](http://twitter.com/TFliesBy)
-* [TimeFliesBy on Pivotal Tracker](http://www.pivotaltracker.com/projects/34616)
 * Email: support at timefliesby dot com
