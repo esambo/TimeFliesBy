@@ -2,7 +2,7 @@ Feature: Tag
   >In order to categorize where I spend my time  
   As a person short on time  
   I want to tag my tasks  
-  
+
   Background: Signed in
     Given I am signed in as a new user
   
