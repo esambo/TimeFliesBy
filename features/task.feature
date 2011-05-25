@@ -3,11 +3,6 @@ Feature: Task
   As a person short on time  
   I want to keep track of tasks  
 
-**Scenarios**
-
-- [Create new task with title](#1)  
-- [Create new task with description](#2)  
-
   Background: Signed in
     Given I am signed in as a new user
 
