@@ -1,6 +1,6 @@
 Feature: Task Description
-  >In order to give a more detailed task description  
-  As a daily end user  
+  >In order to remember what I did  
+  As a person short on time  
   I want to enter long task descriptions that don't fit into the title  
 
   Background: Signed in

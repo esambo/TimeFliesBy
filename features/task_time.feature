@@ -1,7 +1,7 @@
 Feature: Task Time
-  >In order to see when a task was performed  
-  As a troubleshooting user  
-  I want to see the start date-time and stop date-time of a task  
+  >In order to reason about tasks performed  
+  As a person reflecting on my time  
+  I want to see the exact start and stop time of the task  
 
   Background: Signed in
     Given I am signed in as a new user
@@ -12,8 +12,10 @@ Feature: Task Time
     And I fill in "task_stop" with "12/28/2009 2:31 PM"
     And I press "Create"
     Then I should see "Task was successfully created."
+    And I should see "12/28/2009 14:30:00"
+    And I should see "12/28/2009 14:31:00"
 
-  Scenario: Require start
+  Scenario: Require start when using "Create"
     Given I am on the new task page
     When I fill in "task_title" with "Bad test"
     And I press "Create"

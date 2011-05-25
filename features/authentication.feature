@@ -1,14 +1,12 @@
 Feature: Authentication
-  >In order to allow multiple people from using the application independently  
-  As a any kind of user  
-  I want to have my data stored by my user ID  
+  >In order to prevent people from seeing each others data 
+  As a software as a service provider  
+  I want to identify each user  
 
   Scenario: Authentication required
     Given I am on the home page
-    Then I should see "Sign in"
-    And I should not see "Sign out"
-#    When I follow "Tasks"
-#    Then I should see "You need to sign in or register before continuing."
+    When I follow "Tasks"
+    Then I should see "You need to sign in or register before continuing."
 
   Scenario: Register as new user
     Given I am on the home page
@@ -34,10 +32,10 @@ Feature: Authentication
     And I fill in "user_password" with "secret"
     When I press "Sign in"
     Then I should see "Signed in successfully."
+    And I should see "Sign out"
 
   Scenario: Sign out
     Given I am signed in as a new user
-    And I am on the tasks page
     When I follow "Sign out"
     Then I should be on the home page
     And I should see "Signed out successfully."

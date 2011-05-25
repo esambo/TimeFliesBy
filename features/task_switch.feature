@@ -1,6 +1,6 @@
 Feature: Task Switch
-  >In order to quickly create a new task  
-  As a time tracker  
+  >In order to make time tracking quick and easy  
+  As a person short on time  
   I want the current task to stop when switching to a new one  
 
   Background: Signed in

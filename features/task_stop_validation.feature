@@ -1,7 +1,7 @@
-Feature: Task stop greater than start or blank
-  >In order to avoid mistakes  
-  As a troubleshooting user  
-  I want to ensure that stop is greater than start  
+Feature: Task stop validation
+  >In order to have meaningful time tracking data  
+  As a time tracking analyzer  
+  I want to be certain that the stop is greater than start time  
 
   Background: Signed in
     Given I am signed in as a new user
