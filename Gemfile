@@ -17,7 +17,7 @@ gem 'devise'
 
 
 group :development do
-  # curl get.pow.cx | sh
+  gem 'powder'
   gem 'rspec-rails'
   gem 'passenger'
   gem 'autotest-growl'   # if RUBY_PLATFORM =~ /darwin/ # Heroku push rejected
