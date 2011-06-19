@@ -3,6 +3,7 @@
 <style type="text/css">
     .rightSpace {padding-right: 1.5em;}  
 </style>
+
 <table>
   <tr>
     <th>Title</th>
@@ -11,11 +12,10 @@
     <th>Stop</th>
     <th>Tags</th>
     <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <td colspan='3'>
+      <%= link_to 'New Task', new_task_path %>
+    </td>
   </tr>
-
 <% @tasks.each do |task| %>
   <tr class="vevent">
     <td class="rightSpace summary"><%= task.title %></td>
@@ -43,7 +43,3 @@
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Task', new_task_path %>

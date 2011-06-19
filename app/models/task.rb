@@ -10,6 +10,7 @@ class Task < ActiveRecord::Base
   validates_datetime :start, :on_or_after => '2000-01-01 08:00'
   validates_datetime :stop, :allow_blank => true
   validate :valid_stop
+  default_scope order('start desc')
 
   def duration
     (self[:stop].blank? ? Time.zone.now.to_i : self[:stop].to_i) - self[:start].to_i

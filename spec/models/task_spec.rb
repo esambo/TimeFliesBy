@@ -88,6 +88,13 @@ describe Task do
     t.should be_valid
   end
 
+  it "should retrieve tasks in descending order" do
+    t1 = @valid_user.tasks.create!(:title => 'Oldest task', :start => 5.minutes.ago)
+    t2 = @valid_user.tasks.create!(:title => 'Newest task', :start => 1.minutes.ago)
+    ts = @valid_user.tasks.all
+    ts.first.start.should > ts.last.start
+  end
+  
   context "with frozen time" do
     before :each do
       Time.now = "2010-01-03 9:13:23 AM" #freeze time using time_travel plugin

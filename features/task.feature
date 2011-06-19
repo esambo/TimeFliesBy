@@ -22,3 +22,8 @@ Feature: Task
     Then I should see "Task was successfully created."
     And I should see "A long task description explaining"
   
+  Scenario: Descending task order
+    Given I have some tasks
+    When I am on the tasks page
+    Then I should see more recent tasks first
+  

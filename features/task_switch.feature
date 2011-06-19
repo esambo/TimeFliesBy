@@ -55,5 +55,5 @@ Feature: Task Switch
     And I am on the new task page
     When I press "Switch Now"
     And I follow "Back"
-    Then I should see "1m" within ".duration"
+    Then I should see "1m" duration in task 2
   
