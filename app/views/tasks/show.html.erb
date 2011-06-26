@@ -51,5 +51,6 @@
   </p>
 
   <%= link_to 'Edit', edit_task_path(@task), :class => 'url' %> |
+  <%= link_to 'Destroy', @task, :confirm => 'Are you sure?', :method => :delete %> | 
   <%= link_to 'Back to Tasks Summary', tasks_path %>
 </div>
