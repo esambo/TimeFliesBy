@@ -49,9 +49,11 @@ When /^I reload the page$/ do
   end
 end
 
-Then /^I should see "([^"]*)" duration in task (\d+)$/ do |duration, number|
-  durations = page.all(:css, '.duration').map { |e| e.text.strip }
-  durations[number.to_i - 1].should == duration
+Then /^I should see "([^"]*)" ([^"]*) in task (\d+)$/ do |value, key, task_number|
+  # elements = page.all(:css, ".vevent .#{key}").map(&:text)
+  # element = elements[task_number.to_i - 1].strip
+  element = page.all(:css, ".vevent:nth-child(#{task_number.to_i + 1}) .#{key}").first.text.strip
+  element.should == value
 end
 
 Then /^I should see more recent tasks first$/ do
