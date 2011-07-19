@@ -6,5 +6,6 @@ db/*.sqlite3
 .bundle
 .idea
 *.tmproj
+*.sublime-project
 webrat-*.html
 rerun.txt
