@@ -5,9 +5,18 @@ describe Task do
   before(:each) do
     @valid_user = create_user(:email => 'valid_user@timefliesby.com')
     @valid_attributes = {
-      :title => "valid title",
-      :start => Time.zone.now,
-      :description => "valid description"
+      :title        => "valid title",
+      :description  => "valid description",
+      :start        => Time.zone.now
+    }
+    @all_attributes = {
+      :title        => "valid title",
+      :description  => "valid description",
+      :start        => 5.minutes.ago,
+      :stop         => 3.minutes.ago,
+      :created_at   => 5.minutes.ago,
+      :updated_at   => 3.minutes.ago,
+      :user_id      => @valid_user.id
     }
   end
 
@@ -176,6 +185,69 @@ describe Task do
         t.switch_now
         t.start.should == Time.zone.now
       end      
+    end
+
+    context "#switch_to duplicates task into a new one" do
+      it "duplicates attributes" do
+        old_t = @valid_user.tasks.create!(@all_attributes)
+        new_t = old_t.switch_to
+        new_t.title.should        == old_t.title
+        new_t.description.should  == old_t.description
+      end
+
+      it "duplicates user" do
+        old_t = @valid_user.tasks.create!(@all_attributes)
+        new_t = old_t.switch_to
+        new_t.user_id.should      == old_t.user_id
+      end
+
+      it "updated timestamps" do
+        old_t = @valid_user.tasks.create!(@all_attributes)
+        new_t = old_t.switch_to
+        new_t.created_at.should   == Time.zone.now
+        new_t.modified_at.should  == Time.zone.now
+      end
+
+      it "makes it the new task" do
+        old_t = @valid_user.tasks.create!(@all_attributes)
+        new_t = old_t.switch_to
+        new_t.start.should        == Time.zone.now
+      end
+
+      it "makes it the active task" do
+        old_t = @valid_user.tasks.create!(@all_attributes)
+        new_t = old_t.switch_to
+        new_t.stop.should         == nil
+      end
+
+      it "gets a new id" do
+        old_t = @valid_user.tasks.create!(@all_attributes)
+        new_t = old_t.switch_to
+        new_t.id.should_not       == old_t.id
+      end
+
+      it "should be valid" do
+        old_t = @valid_user.tasks.create!(@all_attributes)
+        new_t = old_t.switch_to
+        new_t.should              be_valid
+      end
+
+      it "should be new record" do
+        old_t = @valid_user.tasks.create!(@all_attributes)
+        new_t = old_t.switch_to
+        new_t.should              be_new_record
+      end
+
+      it "duplicates tags" do
+        old_t = @valid_user.tasks.create!(@all_attributes)
+        books_tag = @valid_user.tags.create!(:name => 'books')
+        ruby_tag  = @valid_user.tags.create!(:name => 'ruby')
+        old_t.tags.push(books_tag)
+        old_t.tags.push(ruby_tag)
+        new_t = old_t.switch_to
+        new_t.tags.map(&:name).should include(books_tag.name)
+        new_t.tags.map(&:name).should include(ruby_tag.name)
+      end
     end
     
     context "#set_stop_on_last" do

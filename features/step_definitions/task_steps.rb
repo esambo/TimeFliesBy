@@ -10,6 +10,12 @@ Given /^I have some tasks$/ do
   @task = Task.create!(:title => 'Most recent task', :start => 3.minutes.ago, :stop => 2.minute.ago, :user => current_user)
 end
 
+Given /^I have a task "([^\"]*)" that started "([^\"]*)" ago$/ do |title, duration_in_natural_language|
+  seconds = ChronicDuration.parse(duration_in_natural_language).round
+  start = seconds.seconds.ago
+  @task = Task.create!(:title => title, :start => start, :user => current_user)
+end
+
 Given /^I have a "([^\"]*)" task$/ do |duration_in_natural_language|
   seconds = ChronicDuration.parse(duration_in_natural_language).round
   duration = seconds.seconds.ago
@@ -49,11 +55,32 @@ When /^I reload the page$/ do
   end
 end
 
-Then /^I should see "([^"]*)" ([^"]*) in task (\d+)$/ do |value, key, task_number|
-  # elements = page.all(:css, ".vevent .#{key}").map(&:text)
-  # element = elements[task_number.to_i - 1].strip
-  element = page.all(:css, ".vevent:nth-child(#{task_number.to_i + 1}) .#{key}").first.text.strip
-  element.should == value
+Then /^I should see "([^"]*)" (\w+) in task (\d+)$/ do |value, key, task_number|
+  key = key.sub('start', 'dtstart')
+  key = key.sub('title', 'summary')
+  within(".vevent:nth-child(#{task_number.to_i + 1}) .#{key}") do
+    page.text.strip.should == value
+  end
+end
+
+When /^I press "([^"]*)" in task (\d+)$/ do |button, task_number|
+  within(".vevent:nth-child(#{task_number.to_i + 1})") do
+    click_button(button)
+  end
+end
+
+When /^I press "([^"]*)" in the (\w+) task$/ do |button, task_position|
+  task_position = case task_position
+  when "newest"
+    "first"
+  when "oldest"
+    "last"
+  else
+    "eq(#{task_position})"
+  end
+  within(".vevent:#{task_position}") do
+    click_button(button)
+  end
 end
 
 Then /^I should see more recent tasks first$/ do

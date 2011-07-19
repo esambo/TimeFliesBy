@@ -42,6 +42,23 @@ class Task < ActiveRecord::Base
       end
     end
   end
+
+  def switch_to(time = Time.zone.now)
+    new_task = self.dup
+    new_task.switch_now(time)
+    new_task[:stop]         = nil
+    new_task.stop           = nil
+    # some manual fixes that should not be necessary in Rails 3.1 anymore
+    new_task[:created_at]   = time
+    new_task[:modified_at]  = time
+    new_task[:id]           = nil
+    # deep copy associations
+    # look into gem: deep_cloneable
+    self.tags.each do |t|
+      new_task.tags.push t
+    end
+    new_task
+  end
   
   def valid_stop
     unless self[:stop].blank?

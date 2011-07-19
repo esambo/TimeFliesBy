@@ -127,6 +127,53 @@ describe TasksController do
       end
     end
 
+    describe "POST switch_to" do
+      it "duplicates the requested task" do
+        controller.stub_chain(:current_user, :tasks, :find).with('37') { 
+          old_task = mock_model(Task)
+          old_task.should_receive(:switch_to) { 
+            mock_model(Task, :save => true)
+          }
+          old_task 
+        }
+        post :switch_to, :id => "37"
+      end
+
+      it "sets flash message" do
+        controller.stub_chain(:current_user, :tasks, :find).with('37') { 
+          mock_model(Task, :switch_to => 
+            mock_model(Task, :save => true)
+          ) 
+        }
+        @controller.instance_eval{flash.stub!(:sweep)}
+        post :switch_to, :id => "37"
+        flash.should include(:notice => 'Task was successfully switched back to again.')
+      end
+
+      it "saves duplicated task" do
+        controller.stub_chain(:current_user, :tasks, :find).with('37') { 
+          old_task = mock_model(Task)
+          old_task.stub(:switch_to) {
+            new_task = mock_model(Task)
+            new_task.should_receive(:save) { true }
+            new_task
+          }
+          old_task
+        }
+        post :switch_to, :id => "37"
+      end
+
+      it "redirect to the index page" do
+        controller.stub_chain(:current_user, :tasks, :find).with('37') { 
+          mock_model(Task, :switch_to => 
+            mock_model(Task, :save => true)
+          ) 
+        }
+        post :switch_to, :id => "37"
+        response.should redirect_to(tasks_url)
+      end
+    end
+
     describe "PUT update" do
       describe "with valid params" do
         it "updates the requested task" do

@@ -92,4 +92,20 @@ class TasksController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  # POST /tasks/1
+  # POST /tasks/1.xml
+  def switch_to
+    task = current_user.tasks.find(params[:id]).switch_to
+
+    respond_to do |format|
+      if task.save
+        format.html { redirect_to(tasks_url, :notice => 'Task was successfully switched back to again.') }
+        format.xml  { render :xml => task, :status => :created, :location => task }
+      else
+        format.html { redirect_to(tasks_url, :notice => 'Error! Please try again...') }
+        format.xml  { render :xml => task.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
 end

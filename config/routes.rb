@@ -3,7 +3,9 @@ Timefliesby::Application.routes.draw do
   devise_for :users
   resource   :user
 
-  resources :tasks
+  resources :tasks do
+    post 'switch_to', :on => :member
+  end
   resources :tags
 
   # The priority is based upon order of creation:

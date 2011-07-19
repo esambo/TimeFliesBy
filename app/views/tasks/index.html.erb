@@ -12,6 +12,7 @@
     <th>Stop</th>
     <th>Tags</th>
     <th>Description</th>
+    <th>&nbsp;</th>
     <td colspan='3'>
       <%= link_to 'New Task', new_task_path %>
     </td>
@@ -37,6 +38,13 @@
       <% end %>
     </td>
     <td class="rightSpace description"><%= task.description %></td>
+    <td>
+      <%= form_for task, :url => switch_to_task_path(task), :html => { :method => :post } do |f| %>
+        <div class="actions">
+          <%= f.submit 'Again', :title => 'Switch to this again' %>
+        </div>
+      <% end %>
+    </td>
     <td><%= link_to 'Show', task, :class => 'url' %></td>
     <td><%= link_to 'Edit', edit_task_path(task) %></td>
     <td><%= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete %></td>
