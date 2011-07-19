@@ -17,6 +17,8 @@ gem 'devise'
 
 
 group :development do
+  gem 'pry'
+  gem 'pry-doc'
   gem 'powder'
   gem 'rspec-rails'
   gem 'passenger'
