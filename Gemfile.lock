@@ -54,7 +54,6 @@ GEM
       numerizer (~> 0.1.1)
     coderay (0.9.8)
     columnize (0.3.2)
-    configuration (1.2.0)
     cucumber (0.10.2)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.2)
@@ -82,15 +81,17 @@ GEM
       rake (>= 0.8.7)
     gherkin (2.3.6)
       json (>= 1.4.6)
-    heroku (1.20.1)
-      launchy (~> 0.3.2)
-      rest-client (< 1.7.0, >= 1.4.0)
+    heroku (2.3.6)
+      launchy (>= 0.3.2)
+      rest-client (~> 1.6.1)
+      term-ansicolor (~> 1.0.5)
+    hoptoad_notifier (2.4.11)
+      activesupport
+      builder
     i18n (0.5.0)
     json (1.5.1)
     json_pure (1.5.1)
-    launchy (0.3.7)
-      configuration (>= 0.0.5)
-      rake (>= 0.8.1)
+    launchy (2.0.3)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
     mail (2.2.17)
@@ -138,11 +139,11 @@ GEM
       activesupport (= 3.0.7)
       rake (>= 0.8.7)
       thor (~> 0.14.4)
-    rake (0.8.7)
+    rake (0.9.2)
     relish (0.0.3)
       archive-tar-minitar (~> 0.5.2)
       rest-client (~> 1.6.1)
-    rest-client (1.6.1)
+    rest-client (1.6.3)
       mime-types (>= 1.16)
     rspec (2.5.0)
       rspec-core (~> 2.5.0)
@@ -212,6 +213,7 @@ DEPENDENCIES
   devise
   email_spec
   heroku
+  hoptoad_notifier
   passenger
   powder
   pry
