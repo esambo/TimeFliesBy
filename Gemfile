@@ -10,7 +10,6 @@ gem 'validates_timeliness'
 gem 'chronic_duration'
 gem 'ruby-duration'
 gem 'devise'
-gem 'hoptoad_notifier'
 
 #potential:
 # gem 'chronic'
