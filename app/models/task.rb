@@ -25,13 +25,12 @@ class Task < ActiveRecord::Base
   end
   
   def set_stop_on_last
-    previous_task = user.tasks.first(:conditions => ["stop IS NULL"])
+    previous_task = user.tasks.where("stop IS NULL").first
     if previous_task
       previous_task.stop = self[:start]
       previous_task.save!
     elsif self[:title] != 'Error: Time gap!'
-      # previous_task = user.tasks.first(:order => "start DESC", :conditions => ["stop < ?", self[:start].to_s(:db)])
-      previous_task = user.tasks.first(:order => "start DESC", :conditions => ["stop < ?", self[:start]])
+      previous_task = user.tasks.where("stop < ?", self[:start]).order("start").last
       if previous_task
         gap = Task.create!(
           :title   => 'Error: Time gap!',
