@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '3.0.9'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -15,12 +15,14 @@ gem 'devise'
 # gem 'chronic'
 # gem 'delocalize'
 
+group :development, :test do
+  gem 'rspec-rails'
+end
 
 group :development do
   gem 'pry'
   gem 'pry-doc'
   gem 'powder'
-  gem 'rspec-rails'
   gem 'passenger'
   gem 'autotest-growl'   # if RUBY_PLATFORM =~ /darwin/ # Heroku push rejected
   gem 'autotest-fsevent' # if RUBY_PLATFORM =~ /darwin/ # Heroku push rejected
@@ -32,7 +34,6 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails'
   # gem 'rspec2-rails-views-matchers' #http://www.ruby-forum.com/topic/223220
   gem 'cucumber-rails'
   gem 'capybara'
