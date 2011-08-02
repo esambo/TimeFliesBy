@@ -9,7 +9,7 @@
 require File.join(File.dirname(__FILE__),  ".." ,"support" ,"authentication_helpers" )
 
 Given /^I registered as a new user$/ do
-  visit path_to("/the home page")
+  visit path_to("the home page")
   click_link "Register"
   fill_in "user_email", :with => "test@timefliesby.com"
   fill_in "user_password", :with => "secret"

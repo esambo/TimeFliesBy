@@ -47,7 +47,7 @@ When /^I reload the page$/ do
     when :selenium
       visit page.driver.browser.current_url
     when :rack_test
-      visit [ current_path, page.driver.last_request.env['QUERY_STRING'] ].reject(&:blank?).join('?')
+      visit [ current_path, page.driver.browser.last_request.env['QUERY_STRING'] ].reject(&:blank?).join('?')
     when :culerity
       page.driver.browser.refresh
     else
