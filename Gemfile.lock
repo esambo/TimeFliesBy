@@ -100,7 +100,7 @@ GEM
     nokogiri (1.5.0)
     numerizer (0.1.1)
     orm_adapter (0.0.5)
-    passenger (3.0.7)
+    passenger (3.0.8)
       daemon_controller (>= 0.2.5)
       fastthread (>= 1.0.1)
       rack
@@ -161,7 +161,8 @@ GEM
       ruby_core_source (>= 0.1.4)
     ruby-debug-ide (0.4.16)
       rake (>= 0.8.1)
-    ruby-duration (0.5.4)
+    ruby-duration (2.0.2)
+      activesupport (>= 3.0.0)
       i18n
     ruby_core_source (0.1.5)
       archive-tar-minitar (>= 0.5.2)
