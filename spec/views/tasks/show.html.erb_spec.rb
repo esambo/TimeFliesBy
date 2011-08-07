@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "tasks/show.html.erb" do
   before(:each) do
     @task = assign(:task, stub_model(Task, 
-      :start => Timeliness.parse('3/6/2011 7:45:59'),
+      :start => parse_us_date_time('3/6/2011 7:45:59'),
       :tags  => [
         stub_model(Tag, :name => 'Education'), 
         stub_model(Tag, :name => 'Read Book')
@@ -32,7 +32,7 @@ describe "tasks/show.html.erb" do
   
   describe "#stop" do
     it "shows nice format" do
-      @task[:stop] = Timeliness.parse('3/6/2011 13:45')
+      @task[:stop] = parse_us_date_time('3/6/2011 13:45')
       render
       rendered.should include('3/6/2011 13:45:00')
     end
@@ -43,7 +43,7 @@ describe "tasks/show.html.erb" do
     end
 
     it "is in a Microformats hCalendar" do
-      @task[:stop] = Timeliness.parse('3/6/2011 13:45')
+      @task[:stop] = parse_us_date_time('3/6/2011 13:45')
       render
       assert_select '.vevent .dtend', '3/6/2011 13:45:00'
     end
@@ -54,7 +54,7 @@ describe "tasks/show.html.erb" do
     end
 
     it "has a Microformats hCalendar iso8601 title" do
-      @task[:stop] = Timeliness.parse('3/6/2011 13:45')
+      @task[:stop] = parse_us_date_time('3/6/2011 13:45')
       render
       assert_select '.vevent .dtend .value-title' do |elements|
         elements[0]['title'].should include('2011-03-06T13:45:00-06:00')
@@ -71,7 +71,7 @@ describe "tasks/show.html.erb" do
   
   describe "#duration" do
     it "shows nice format" do
-      @task[:stop] = Timeliness.parse('3/6/2011 13:45')
+      @task[:stop] = parse_us_date_time('3/6/2011 13:45')
       render
       assert_select '.vevent .duration', '5h 59m 1s'
     end
@@ -83,7 +83,7 @@ describe "tasks/show.html.erb" do
     end
   
     it "has a Microformats iso8601 title" do
-      @task[:stop] = Timeliness.parse('3/6/2011 13:45')
+      @task[:stop] = parse_us_date_time('3/6/2011 13:45')
       render
       assert_select '.vevent .duration .value-title' do |elements|
         elements[0]['title'].should include('PT5H59M1S')

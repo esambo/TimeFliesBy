@@ -25,12 +25,12 @@
       <%= human_duration task.duration %>
     </td>
     <td class="rightSpace dtstart">
-      <span class="value-title" title="<%= microformats_datetime task.start %>"> </span>
-      <%= human_datetime task.start %>
+      <span class="value-title" title="<%= microformats_date_time task.start %>"> </span>
+      <%= human_date_time task.start %>
     </td>
     <td class="rightSpace dtend">
-      <span class="value-title" title="<%= microformats_datetime task.stop %>"> </span>
-      <%= human_datetime task.stop %>
+      <span class="value-title" title="<%= microformats_date_time task.stop %>"> </span>
+      <%= human_date_time task.stop %>
     </td>
     <td class="rightSpace tags">
       <% task.tags.each do |tag| %>

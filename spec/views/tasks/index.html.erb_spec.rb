@@ -4,15 +4,15 @@ describe "tasks/index.html.erb" do
   before(:each) do
     assign(:tasks, [
       stub_model(Task, 
-        :start => Timeliness.parse('3/1/2011 9:45:59'), 
-        :stop  => Timeliness.parse('3/1/2011 12:45'),
+        :start => parse_us_date_time('3/1/2011 9:45:59'),
+        :stop  => parse_us_date_time('3/1/2011 12:45'),
         :tags  => [
           stub_model(Tag, :name => 'Education'), 
           stub_model(Tag, :name => 'Read Book')
         ]
       ),
       stub_model(Task, 
-        :start => Timeliness.parse('3/6/2011 7:45:59') 
+        :start => parse_us_date_time('3/6/2011 7:45:59')
       ),
     ])
   end

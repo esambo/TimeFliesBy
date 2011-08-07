@@ -51,13 +51,13 @@
     <%= f.label :start %><br />
     <%#= f.datetime_select :start %>
     <%#= f.text_field :start #Can't seem to find value! %>
-    <%= text_field_tag 'task[start]', editable_datetime(@task.start), :size => 30 %>
+    <%= text_field_tag 'task[start]', editable_date_time(@task.start), :size => 30 %>
   </div>
   <div class="field">
     <%= f.label :stop %><br />
     <%#= f.datetime_select :stop %>
     <%#= f.text_field :stop #Can't seem to find value! %>
-    <%= text_field_tag 'task[stop]', editable_datetime(@task.stop), :size => 30 %>
+    <%= text_field_tag 'task[stop]', editable_date_time(@task.stop), :size => 30 %>
   </div>
   <div class="actions">
     <%= f.submit %>

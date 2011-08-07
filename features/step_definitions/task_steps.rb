@@ -1,5 +1,3 @@
-require 'chronic_duration'
-
 Given /^I have a task "([^\"]*)"$/ do |title|
   @task = Task.create!(:title => title, :start => 5.minutes.ago, :stop => 1.minute.ago, :user => current_user)
 end
@@ -11,19 +9,19 @@ Given /^I have some tasks$/ do
 end
 
 Given /^I have a task "([^\"]*)" that started "([^\"]*)" ago$/ do |title, duration_in_natural_language|
-  seconds = ChronicDuration.parse(duration_in_natural_language).round
+  seconds = parse_human_duration(duration_in_natural_language).round
   start = seconds.seconds.ago
   @task = Task.create!(:title => title, :start => start, :user => current_user)
 end
 
 Given /^I have a "([^\"]*)" task$/ do |duration_in_natural_language|
-  seconds = ChronicDuration.parse(duration_in_natural_language).round
+  seconds = parse_human_duration(duration_in_natural_language).round
   duration = seconds.seconds.ago
   @task = Task.create!(:title => 'task title', :start => duration, :stop => Time.now, :user => current_user)
 end
 
 Given /^I have a stop "([^\"]*)" ago$/ do |duration_in_natural_language|
-  seconds = ChronicDuration.parse(duration_in_natural_language).round
+  seconds = parse_human_duration(duration_in_natural_language).round
   stop  = seconds.seconds.ago
   start = (seconds + 1).seconds.ago
   @task = Task.create!(:title => 'task with stop', 
@@ -34,11 +32,11 @@ Given /^I have a stop "([^\"]*)" ago$/ do |duration_in_natural_language|
 end
 
 When /^I fill in all required fields$/ do
-  fill_in "task_start", :with => I18n.l(Time.zone.now, :format => :nice)
+  fill_in "task_start", :with => editable_date_time(Time.zone.now)
 end
 
 When /^it is "([^\"]*)"$/ do |datetime|
-  Time.now = Timeliness.parse datetime #parse m/d/yy in US format
+  Time.now = parse_us_date_time datetime
 end
 
 When /^I reload the page$/ do
@@ -84,6 +82,6 @@ When /^I press "([^"]*)" in the (\w+) task$/ do |button, task_position|
 end
 
 Then /^I should see more recent tasks first$/ do
-  starts = page.all(:css, '.dtstart').map { |e| Timeliness.parse(e.text.strip) }
+  starts = page.all(:css, '.dtstart').map { |e| parse_us_date_time(e.text.strip) }
   starts.first.should > starts.last
 end
