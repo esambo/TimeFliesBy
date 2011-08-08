@@ -46,6 +46,10 @@ describe DateTimeHelper do
     it "should parse duration into seconds" do
       parse_human_duration('1m 9s').should == 69
     end
+    
+    it "should return 0 instead of nil" do
+      parse_human_duration('0s').should == 0
+    end
   end
   
   describe "#parse_us_date_time" do

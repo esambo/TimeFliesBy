@@ -268,8 +268,10 @@ describe Task do
         t.save!
       end
       
-      it "should create a 'Error: Time gap!' task if the previous task already had a stop (which could happen since I don't use a transaction)" do
-        prev_t = @valid_user.tasks.create! :start => 5.minutes.ago, :stop => 4.minutes.ago
+      it "should create a 'Error: Time gap!' task if the previous task already had a stop" do
+        prev_t = @valid_user.tasks.create! :start => 10.minutes.ago
+        prev_t = @valid_user.tasks.create! :start =>  6.minutes.ago
+        prev_t = @valid_user.tasks.create! :start =>  3.minutes.ago, :stop => 1.minutes.ago
       
         t = @valid_user.tasks.new
         t.switch_now
@@ -277,14 +279,10 @@ describe Task do
         t.reload
         t.start.should == Time.zone.now
         
-        # gap_t = @valid_user.tasks.first(:order => "start DESC", :conditions => ["stop = ?", t.start.to_s(:db) + '.000000'])
-        gap_t = @valid_user.tasks.first(:order => "start DESC", :conditions => ["stop = ?", t.start])
+        gap_t = @valid_user.tasks.where(:title => 'Error: Time gap!').first
         gap_t.should be_kind_of Task
-        gap_t.class.to_s.should == Task.to_s
-        gap_t.title.should == 'Error: Time gap!'
-        gap_t.start.should == 4.minutes.ago
+        gap_t.start.should == 1.minutes.ago
         gap_t.stop.should == t.start
-        gap_t.user_id.should == t.user_id
       end
       
     end

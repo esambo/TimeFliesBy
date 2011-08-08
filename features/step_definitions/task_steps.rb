@@ -20,11 +20,10 @@ Given /^I have a "([^\"]*)" task$/ do |duration_in_natural_language|
   @task = Task.create!(:title => 'task title', :start => duration, :stop => Time.now, :user => current_user)
 end
 
-Given /^I have a stop "([^\"]*)" ago$/ do |duration_in_natural_language|
-  seconds = parse_human_duration(duration_in_natural_language).round
-  stop  = seconds.seconds.ago
-  start = (seconds + 1).seconds.ago
-  @task = Task.create!(:title => 'task with stop', 
+Given /^I have a task "([^\"]*)" that started "([^\"]*)" and stopped "([^\"]*)" ago$/ do |title, start_age_duration, stop_age_duration|
+  start = parse_human_duration(start_age_duration).round.seconds.ago
+  stop  = parse_human_duration(stop_age_duration).round.seconds.ago
+  @task = Task.create!(:title => title, 
                        :start => start, 
                        :stop  => stop, 
                        :user  => current_user

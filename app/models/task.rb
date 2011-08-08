@@ -30,7 +30,7 @@ class Task < ActiveRecord::Base
       previous_task.stop = self[:start]
       previous_task.save!
     elsif self[:title] != 'Error: Time gap!'
-      previous_task = user.tasks.where("stop < ?", self[:start]).order("start").last
+      previous_task = user.tasks.where("stop < ?", self[:start]).first
       if previous_task
         gap = Task.create!(
           :title   => 'Error: Time gap!',

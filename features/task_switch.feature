@@ -17,17 +17,6 @@ Feature: Task Switch
     And I should see "0s"
   
   @time_travel
-  Scenario: Prevent time gaps
-    Given it is "1/3/2010 8:13:23 AM"
-    And I have a stop "1m" ago
-    And I am on the new task page
-    When I press "Switch Now"
-    And it is "1/3/2010 8:13:24 AM"
-    And I follow "Back"
-    And I should see "Error: Time gap!"
-    And I should see "1m"
-  
-  @time_travel
   Scenario: Duration on new task using 'Switch Now'
     Given it is "1/3/2010 8:13:23 AM"
     And I have a "1m" task

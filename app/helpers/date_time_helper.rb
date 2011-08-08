@@ -21,7 +21,7 @@ module DateTimeHelper
   end
   
   def parse_human_duration(duration_in_natural_language)
-    ChronicDuration.parse(duration_in_natural_language)
+    ChronicDuration.parse(duration_in_natural_language) || 0
   end
   
   def parse_us_date_time(date_and_time)
