@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.0.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -27,7 +27,7 @@ group :development do
   gem 'autotest-growl'   # if RUBY_PLATFORM =~ /darwin/ # Heroku push rejected
   gem 'autotest-fsevent' # if RUBY_PLATFORM =~ /darwin/ # Heroku push rejected
   gem 'heroku'
-  gem 'relish'
+  gem 'relish', '0.4.0'
   # gem 'legacy_migrations', 
   #       :git    => 'git://github.com/btelles/legacy_migrations.git',
   #       :branch => 'rails3'
