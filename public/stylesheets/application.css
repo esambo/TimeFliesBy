@@ -18,6 +18,7 @@ a {
   overflow: hidden;
 }
 
+/*
 #container {
   width: 75%;
   margin: 0 auto;
@@ -26,6 +27,7 @@ a {
   border: solid 1px black;
   margin-top: 20px;
 }
+*/
 
 #flash_success, #flash_failure {
   padding: 5px 8px;
