@@ -10,6 +10,7 @@ gem 'validates_timeliness'
 gem 'chronic_duration'
 gem 'ruby-duration'
 gem 'devise'
+gem "jquery-rails"
 
 #potential:
 # gem 'chronic'

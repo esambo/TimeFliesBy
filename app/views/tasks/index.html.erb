@@ -1,8 +1,20 @@
 <% title 'Tasks Summary' -%>
 
 <style type="text/css">
-    .rightSpace {padding-right: 1.5em;}  
+    .rightSpace {padding-right: 1.5em;}
+    .wide { white-space: nowrap; }
+    .number { text-align: right; }
 </style>
+
+<%= javascript_include_tag 'jquery.truncate.min' %>
+<script type="text/javascript">
+  $(function() {
+    $('.truncate').truncate({
+      width: 'auto',
+      addtitle: true
+    });
+  });
+</script>
 
 <table>
   <tr>
@@ -19,16 +31,16 @@
   </tr>
 <% @tasks.each do |task| %>
   <tr class="vevent">
-    <td class="rightSpace summary"><%= task.title %></td>
-    <td class="rightSpace duration">
+    <td class="rightSpace truncate summary" width="25%"><%= task.title %></td>
+    <td class="rightSpace wide number duration">
       <span class="value-title" title="<%= microformats_duration task.duration %>"> </span>
       <%= human_duration task.duration %>
     </td>
-    <td class="rightSpace dtstart">
+    <td class="rightSpace number dtstart">
       <span class="value-title" title="<%= microformats_date_time task.start %>"> </span>
       <%= human_date_time task.start %>
     </td>
-    <td class="rightSpace dtend">
+    <td class="rightSpace number dtend">
       <span class="value-title" title="<%= microformats_date_time task.stop %>"> </span>
       <%= human_date_time task.stop %>
     </td>
@@ -37,12 +49,12 @@
         <%= link_to tag.name, tag, 'rel' => 'tag' %>
       <% end %>
     </td>
-    <td class="rightSpace description"><%= task.description %></td>
+    <td class="rightSpace truncate description" width="15%"><%= task.description %></td>
     <td>
       <%= form_for task, :url => switch_to_task_path(task), :html => { :method => :post } do |f| %>
-        <div class="actions">
+        <span class="actions">
           <%= f.submit 'Again', :title => 'Switch to this again' %>
-        </div>
+        </span>
       <% end %>
     </td>
     <td><%= link_to 'Show', task, :class => 'url' %></td>
