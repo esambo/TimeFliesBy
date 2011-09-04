@@ -5,7 +5,9 @@ en:
   time:
     formats:
       nice: "%-m/%-d/%Y %H:%M:%S"
-      nicer: "%-m/%-d/%Y %l:%M:%S %p"
+      nicer: "%-m/%-d/%Y %-l:%M:%S %-p"
+      longer_date: '%a, %b %-d, %Y'
+      time: "%-l:%M:%S %-p"
 
 # Based on: https://github.com/svenfuchs/rails-i18n/raw/master/rails/locale/en-US.yml
 # Rails Views l: http://guides.rubyonrails.org/i18n.html#adding-date-time-formats

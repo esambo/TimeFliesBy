@@ -32,6 +32,26 @@ describe DateTimeHelper do
     end
   end
   
+  describe "#human_longer_date" do
+    it "should should use short day of week and month abbreviations" do
+      human_longer_date(DateTime.parse('28 Aug 2011')).should == 'Sun, Aug 28, 2011'
+    end
+    
+    it "should use single digit day of month" do
+      human_longer_date(DateTime.parse('1 Aug 2011')).should == 'Mon, Aug 1, 2011'
+    end
+  end
+  
+  describe "#human_time" do
+    it "should show the time in AM/PM" do
+      human_time(Time.parse('12:50:30 AM')).should == '12:50:30 AM'
+    end
+    
+    it "should show hours in single digit" do
+      human_time(Time.parse('4:05 PM')).should == '4:05:00 PM'
+    end
+  end
+  
   describe "#microformats_date_time" do
     it "should be iso8601" do
       microformats_date_time(Time.zone.parse("11 Apr 2011 06:14:01 CDT -05:00")).should == '2011-04-11T06:14:01-05:00'

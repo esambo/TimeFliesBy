@@ -55,32 +55,35 @@ end
 Then /^I should see "([^"]*)" (\w+) in task (\d+)$/ do |value, key, task_number|
   key = key.sub('start', 'dtstart')
   key = key.sub('title', 'summary')
-  within(".vevent:nth-child(#{task_number.to_i + 1}) .#{key}") do
-    page.text.strip.should == value
-  end
+  # row = task_number.to_i + 2
+  # row += 1 if row > 3 'sub headline
+  # within(".vevent:nth-child(#{row}) .#{key}") do
+  #   page.text.strip.should == value
+  # end
+  element = page.all(:css, ".vevent .#{key}")[task_number.to_i - 1]
+  element.text.strip.should == value
 end
 
 When /^I press "([^"]*)" in task (\d+)$/ do |button, task_number|
-  within(".vevent:nth-child(#{task_number.to_i + 1})") do
-    click_button(button)
-  end
+  element = page.all(:css, ".vevent")[task_number.to_i - 1]
+  element.click_button(button)
+  # end
 end
 
 When /^I press "([^"]*)" in the (\w+) task$/ do |button, task_position|
-  task_position = case task_position
-  when "newest"
-    "first"
-  when "oldest"
-    "last"
-  else
-    "eq(#{task_position})"
+  task_index = case task_position
+    when "newest"
+      0
+    when "oldest"
+      -1
+    else
+      task_position - 1
   end
-  within(".vevent:#{task_position}") do
-    click_button(button)
-  end
+  element = page.all(:css, ".vevent")[task_index]
+  element.click_button(button)
 end
 
 Then /^I should see more recent tasks first$/ do
-  starts = page.all(:css, '.dtstart').map { |e| parse_us_date_time(e.text.strip) }
+  starts = page.all(:css, '.dtstart').map { |e| Time.parse(e.text.strip) }
   starts.first.should > starts.last
 end

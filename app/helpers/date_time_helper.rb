@@ -16,6 +16,14 @@ module DateTimeHelper
     I18n.l(date_and_time, :format => :nice) unless date_and_time.nil?
   end
   
+  def human_longer_date(date_and_time)
+    I18n.l(date_and_time, :format => :longer_date) unless date_and_time.nil?
+  end
+
+  def human_time(date_and_time)
+    I18n.l(date_and_time, :format => :time) unless date_and_time.nil?
+  end
+  
   def microformats_date_time(date_and_time)
     date_and_time.iso8601 unless date_and_time.nil?
   end

@@ -1,9 +1,14 @@
 <% title 'Tasks Summary' -%>
 
 <style type="text/css">
-    .rightSpace {padding-right: 1.5em;}
+    .rightSpace {padding-right: 0.5em;}
     .wide { white-space: nowrap; }
     .number { text-align: right; }
+    .summary a:link    {text-decoration: none}
+    .summary a:visited {text-decoration: none}
+    .summary a:active  {text-decoration: none}
+    .summary a:hover   {text-decoration: underline;}
+    h4 {margin-bottom: 0em;}
 </style>
 
 <%= javascript_include_tag 'jquery.truncate.min' %>
@@ -18,48 +23,60 @@
 
 <table>
   <tr>
-    <th>Title</th>
-    <th>Duration</th>
+    <th align="left">Title</th>
+    <th align="right" class="rightSpace">Duration</th>
     <th>Start</th>
-    <th>Stop</th>
-    <th>Tags</th>
-    <th>Description</th>
-    <th>&nbsp;</th>
-    <td colspan='3'>
-      <%= link_to 'New Task', new_task_path %>
+    <th align="left">Tags</th>
+    <th align="left">Description</th>
+    <td>
+      <%= link_to 'New', new_task_path %>
     </td>
   </tr>
+<% current_date = 'Ongoing' %>
 <% @tasks.each do |task| %>
+  <% if task.stop.nil? %>
+    <tr>
+      <td colspan="6">
+        <h4>Ongoing</h4>
+      </td>
+    </tr>
+  <% elsif current_date != human_longer_date(task.start) %>
+    <% current_date = human_longer_date(task.start) %>
+    <tr>
+      <td>
+        <h4>
+          <%= current_date %>
+        </h4>
+      </td>
+    </tr>
+  <% end %>
   <tr class="vevent">
-    <td class="rightSpace truncate summary" width="25%"><%= task.title %></td>
-    <td class="rightSpace wide number duration">
+    <td class="rightSpace truncate summary" width="25%">
+      <%= link_to task.title.presence || '-- No Title! --', task, :class => 'url' %>
+    </td>
+    <td class="rightSpace wide number duration" width="120px">
       <span class="value-title" title="<%= microformats_duration task.duration %>"> </span>
       <%= human_duration task.duration %>
     </td>
-    <td class="rightSpace number dtstart">
+    <td class="rightSpace number dtstart" width="90px">
       <span class="value-title" title="<%= microformats_date_time task.start %>"> </span>
-      <%= human_date_time task.start %>
-    </td>
-    <td class="rightSpace number dtend">
-      <span class="value-title" title="<%= microformats_date_time task.stop %>"> </span>
-      <%= human_date_time task.stop %>
+      <%= human_time task.start %>
     </td>
     <td class="rightSpace tags">
       <% task.tags.each do |tag| %>
         <%= link_to tag.name, tag, 'rel' => 'tag' %>
       <% end %>
     </td>
-    <td class="rightSpace truncate description" width="15%"><%= task.description %></td>
-    <td>
+    <td class="rightSpace truncate description" width="160px">
+      <%= task.description %>
+    </td>
+    <td width="50px">
       <%= form_for task, :url => switch_to_task_path(task), :html => { :method => :post } do |f| %>
         <span class="actions">
           <%= f.submit 'Again', :title => 'Switch to this again' %>
         </span>
       <% end %>
     </td>
-    <td><%= link_to 'Show', task, :class => 'url' %></td>
-    <td><%= link_to 'Edit', edit_task_path(task) %></td>
-    <td><%= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

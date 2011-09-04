@@ -20,12 +20,12 @@ describe "tasks/index.html.erb" do
   describe "#start" do
     it "shows nice format" do
       render
-      rendered.should include('3/6/2011 07:45:59')
+      rendered.should include('7:45:59 AM')
     end
   
     it "is in a Microformats hCalendar" do
       render
-      assert_select '.vevent .dtstart', '3/6/2011 07:45:59'
+      assert_select '.vevent .dtstart', '7:45:59 AM'
     end
   
     it "has a Microformats hCalendar iso8601 title" do
@@ -36,39 +36,6 @@ describe "tasks/index.html.erb" do
     end
   end
 
-  describe "#stop with value" do
-    it "shows nice format" do
-      render
-      rendered.should include('3/1/2011 12:45:00')
-    end
-  
-    it "is in a Microformats hCalendar" do
-      render
-      assert_select '.vevent .dtend', '3/1/2011 12:45:00'
-    end
-  
-    it "has a Microformats hCalendar iso8601 title" do
-      render
-      assert_select '.vevent .dtend .value-title' do |elements|
-        elements.first['title'].should include('2011-03-01T12:45:00-06:00')
-      end
-    end
-  end
-  
-  describe "#stop being blank" do
-    it "has 'Active' in Microformats hCalendar value" do
-      render
-      assert_select '.vevent .dtend', 'Active'
-    end
-  
-    it "has no Microformats hCalendar iso8601 title value" do
-      render
-      assert_select '.vevent .dtend .value-title' do |elements|
-        elements.second['title'].should_not include('T')
-      end
-    end
-  end
-  
   describe "#duration" do
     it "shows nice format" do
       render

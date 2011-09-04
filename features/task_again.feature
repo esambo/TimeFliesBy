@@ -14,6 +14,6 @@ Feature: Switch To Task Again
     And I am on the tasks page
     When I press "Again" in the oldest task
     Then I should see "Task was successfully switched back to again."
-    And I should see "1/3/2010 08:13:23" start in task 1
+    And I should see "8:13:23 AM" start in task 1
     And I should see "Read emails" title in task 1
   
