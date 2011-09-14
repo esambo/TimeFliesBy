@@ -27,8 +27,8 @@ group :development do
   gem 'passenger'
   gem 'autotest-growl'   # if RUBY_PLATFORM =~ /darwin/ # Heroku push rejected
   gem 'autotest-fsevent' # if RUBY_PLATFORM =~ /darwin/ # Heroku push rejected
+  # gem 'relish', '0.5.1' #has old dependencies on json '~> 1.4.6' which excludes '1.6.0'
   gem 'heroku'
-  gem 'relish', '0.4.0'
   # gem 'legacy_migrations', 
   #       :git    => 'git://github.com/btelles/legacy_migrations.git',
   #       :branch => 'rails3'
