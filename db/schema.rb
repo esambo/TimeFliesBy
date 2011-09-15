@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110805225950) do
+ActiveRecord::Schema.define(:version => 20110915202302) do
 
   create_table "tag_tasks", :force => true do |t|
     t.integer  "user_id"
@@ -21,12 +21,18 @@ ActiveRecord::Schema.define(:version => 20110805225950) do
     t.datetime "updated_at"
   end
 
+  add_index "tag_tasks", ["tag_id"], :name => "index_tag_tasks_on_tag_id"
+  add_index "tag_tasks", ["task_id"], :name => "index_tag_tasks_on_task_id"
+  add_index "tag_tasks", ["user_id"], :name => "index_tag_tasks_on_user_id"
+
   create_table "tags", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "tags", ["user_id"], :name => "index_tags_on_user_id"
 
   create_table "tasks", :force => true do |t|
     t.string   "title"
@@ -37,6 +43,8 @@ ActiveRecord::Schema.define(:version => 20110805225950) do
     t.text     "description"
     t.integer  "user_id"
   end
+
+  add_index "tasks", ["user_id"], :name => "index_tasks_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
