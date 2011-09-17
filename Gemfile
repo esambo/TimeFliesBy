@@ -5,11 +5,11 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'validates_timeliness'
 gem 'chronic_duration'
 gem 'ruby-duration'
 gem 'devise'
+gem 'thin'
 
 #potential:
 # gem 'chronic'
@@ -18,6 +18,7 @@ gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'sqlite3'
 end
 
 group :development do
@@ -48,6 +49,10 @@ group :test do
   gem 'ruby-debug-ide'
   # gem 'mofo', :git => 'git://github.com/halfbyte/mofo.git'
   # gem 'hpricot', "~>0.8.2" #required by 'mofo'
+end
+
+group :production do
+  gem 'pg'
 end
 
 # Gems used only for assets and not required
