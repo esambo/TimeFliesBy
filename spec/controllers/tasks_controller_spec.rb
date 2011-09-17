@@ -1,10 +1,18 @@
 require 'spec_helper'
 
+## Rails 3.1
+# Compared to earlier versions of this generator, there is very limited use of
+# stubs and message expectations in this spec.  Stubs are only used when there
+# is no simpler way to get a handle on the object needed for the example.
+# Message expectations are only used when there is no simpler way to specify
+# that an instance is receiving a specific message.
+## I do NOT use that template but still the older Rails 3.0 one!
+
 describe TasksController do
 
   include Devise::TestHelpers
   include AuthenticationHelperMethods
-  
+
   describe "Sign in as user" do
     before :each do
       controller.stub!(:authenticate_user!).and_return(true)
@@ -29,7 +37,7 @@ describe TasksController do
       # Task.stub(:find).with("37") { mock_task }
         controller.stub_chain(:current_user, :tasks, :find).with('37') { mock_task }
         get :show, :id => "37"
-        assigns(:task).should be(mock_task)
+        assigns(:task).should eq(mock_task)
       end
     end
 
@@ -41,7 +49,7 @@ describe TasksController do
         get :new
         assigns(:task).should be(mock_task)
       end
-      
+
       it "assigns all tags to @tags" do
         tags = [mock_model(Tag), mock_model(Tag)]
         controller.stub_chain(:current_user, :tasks, :new) { mock_task }
@@ -58,9 +66,9 @@ describe TasksController do
         controller.stub_chain(:current_user, :tasks, :find).with('37') { mock_task }
         controller.stub_chain(:current_user, :tags, :all) { }
         get :edit, :id => "37"
-        assigns(:task).should be(mock_task)
+        assigns(:task).should eq(mock_task)
       end
-      
+
       it "assigns all tags to @tags" do
         tags = [mock_model(Tag), mock_model(Tag)]
         controller.stub_chain(:current_user, :tasks, :find).with('37') { mock_task }
@@ -76,11 +84,11 @@ describe TasksController do
         it "assigns a newly created task as @task" do
           start = Time.now
         # Task.stub(:new).with({'start' => start}) { mock_task(:save => true) }
-          controller.stub_chain(:current_user, :tasks, :new).with('start' => start) { mock_task(:save => true, :start => start) }
+          controller.stub_chain(:current_user, :tasks, :new).with('start' => "#{start}") { mock_task(:save => true, :start => start) }
           @controller.instance_eval{flash.stub!(:sweep)}
           post :create, :task => {'start' => start}
           assigns(:task).should be(mock_task)
-          flash.should include(:notice => 'Task was successfully created.')
+          flash[:notice].should eq('Task was successfully created.')
         end
 
         it "calls Task#switch_now when SWITCH is used" do
@@ -115,7 +123,7 @@ describe TasksController do
           post :create, :task => {}
           response.should render_template("new")
         end
-        
+
         it "assigns all tags to @tags" do
           tags = [mock_model(Tag), mock_model(Tag)]
           controller.stub_chain(:current_user, :tasks, :new) { mock_task(:save => false) }
@@ -147,7 +155,7 @@ describe TasksController do
         }
         @controller.instance_eval{flash.stub!(:sweep)}
         post :switch_to, :id => "37"
-        flash.should include(:notice => 'Task was successfully switched back to again.')
+        flash[:notice].should eq('Task was successfully switched back to again.')
       end
 
       it "saves duplicated task" do
@@ -188,7 +196,7 @@ describe TasksController do
         # Task.stub(:find) { mock_task(:update_attributes => true) }
           controller.stub_chain(:current_user, :tasks, :find) { mock_task(:update_attributes => true) }
           put :update, :id => "1"
-         assigns(:task).should be(mock_task)
+         assigns(:task).should eq(mock_task)
        end
 
         it "redirects to the task" do
@@ -205,7 +213,7 @@ describe TasksController do
           controller.stub_chain(:current_user, :tasks, :find) { mock_task(:update_attributes => false) }
           controller.stub_chain(:current_user, :tags,  :all) { }
           put :update, :id => "1"
-          assigns(:task).should be(mock_task)
+          assigns(:task).should eq(mock_task)
         end
 
         it "re-renders the 'edit' template" do
@@ -215,7 +223,7 @@ describe TasksController do
           put :update, :id => "1"
           response.should render_template("edit")
         end
-        
+
         it "assigns all tags to @tags" do
           tags = [mock_model(Tag), mock_model(Tag)]
           controller.stub_chain(:current_user, :tasks, :find) { mock_task(:update_attributes => false) }

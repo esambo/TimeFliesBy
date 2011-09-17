@@ -3,6 +3,14 @@ require 'spec_helper'
 include Devise::TestHelpers
 include AuthenticationHelperMethods
 
+## Rails 3.1
+# Compared to earlier versions of this generator, there is very limited use of
+# stubs and message expectations in this spec.  Stubs are only used when there
+# is no simpler way to get a handle on the object needed for the example.
+# Message expectations are only used when there is no simpler way to specify
+# that an instance is receiving a specific message.
+## I do NOT use that template but still the older Rails 3.0 one!
+
 describe TagsController do
 
   describe "Sign in as user" do
@@ -32,7 +40,7 @@ describe TagsController do
       it "assigns the requested tag as @tag" do
         controller.stub_chain(:current_user, :tags, :find).with('37') { mock_tag }
         get :show, :id => "37"
-        assigns(:tag).should be(mock_tag)
+        assigns(:tag).should eq(mock_tag)
       end
     end
 
@@ -48,7 +56,7 @@ describe TagsController do
       it "assigns the requested tag as @tag" do
         controller.stub_chain(:current_user, :tags, :find).with('37') { mock_tag }
         get :edit, :id => "37"
-        assigns(:tag).should be(mock_tag)
+        assigns(:tag).should eq(mock_tag)
       end
     end
 
@@ -59,7 +67,7 @@ describe TagsController do
           controller.current_user.stub(:id).and_return(1)
           
           post :create, :tag => {'name' => 'Education'}
-          assigns(:tag).should be(mock_tag)
+          assigns(:tag).should be_a(Tag)
         end
       
         it "adds the current_user to @tag" do
@@ -126,7 +134,7 @@ describe TagsController do
         it "assigns the requested tag as @tag" do
           controller.stub_chain(:current_user, :tags, :find) { mock_tag(:update_attributes => true) }
           put :update, :id => "1"
-          assigns(:tag).should be(mock_tag)
+          assigns(:tag).should eq(mock_tag)
         end
 
         it "redirects to the tag" do
@@ -140,7 +148,7 @@ describe TagsController do
         it "assigns the tag as @tag" do
           controller.stub_chain(:current_user, :tags, :find) { mock_tag(:update_attributes => false) }
           put :update, :id => "1"
-          assigns(:tag).should be(mock_tag)
+          assigns(:tag).should eq(mock_tag)
         end
 
         it "re-renders the 'edit' template" do

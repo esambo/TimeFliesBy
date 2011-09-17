@@ -2,36 +2,36 @@ class TasksController < ApplicationController
   before_filter :authenticate_user!
 
   # GET /tasks
-  # GET /tasks.xml
+  # GET /tasks.json
   def index
     @tasks = current_user.tasks.all :include => :tags
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @tasks }
+      format.json { render json: @tasks }
     end
   end
 
   # GET /tasks/1
-  # GET /tasks/1.xml
+  # GET /tasks/1.json
   def show
     @task = current_user.tasks.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @task }
+      format.json { render json: @task }
     end
   end
 
   # GET /tasks/new
-  # GET /tasks/new.xml
+  # GET /tasks/new.json
   def new
     @task = current_user.tasks.new
     @tags = current_user.tags.all
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @task }
+      format.json { render json: @task }
     end
   end
 
@@ -42,25 +42,25 @@ class TasksController < ApplicationController
   end
 
   # POST /tasks
-  # POST /tasks.xml
+  # POST /tasks.json
   def create
     @task = current_user.tasks.new(params[:task])
     @task.switch_now if params[:commit] == 'Switch Now'
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to(@task, :notice => 'Task was successfully created.') }
-        format.xml  { render :xml => @task, :status => :created, :location => @task }
+        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.json { render json: @task, status: :created, location: @task }
       else
         @tags = current_user.tags.all
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PUT /tasks/1
-  # PUT /tasks/1.xml
+  # PUT /tasks/1.json
   def update
     @task = current_user.tasks.find(params[:id])
     if params[:commit] == 'Switch Now'
@@ -71,40 +71,40 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to(@task, :notice => 'Task was successfully updated.') }
-        format.xml  { head :ok }
+        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.json { head :ok }
       else
         @tags = current_user.tags.all
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /tasks/1
-  # DELETE /tasks/1.xml
+  # DELETE /tasks/1.json
   def destroy
     @task = current_user.tasks.find(params[:id])
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to(tasks_url) }
-      format.xml  { head :ok }
+      format.html { redirect_to tasks_url }
+      format.json { head :ok }
     end
   end
 
   # POST /tasks/1
-  # POST /tasks/1.xml
+  # POST /tasks/1.json
   def switch_to
     task = current_user.tasks.find(params[:id]).switch_to
 
     respond_to do |format|
       if task.save
-        format.html { redirect_to(tasks_url, :notice => 'Task was successfully switched back to again.') }
-        format.xml  { render :xml => task, :status => :created, :location => task }
+        format.html { redirect_to tasks_url, notice: 'Task was successfully switched back to again.' }
+        format.json { render json: task, status: :created, location: task }
       else
-        format.html { redirect_to(tasks_url, :notice => 'Error! Please try again...') }
-        format.xml  { render :xml => task.errors, :status => :unprocessable_entity }
+        format.html { redirect_to tasks_url, notice: 'Error! Please try again...' }
+        format.json { render json: task.errors, status: :unprocessable_entity }
       end
     end
   end

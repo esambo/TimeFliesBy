@@ -2,9 +2,9 @@
 <html>
 <head>
   <title>Time Flies By | <%= title %></title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= yield :head %>
 </head>
@@ -13,7 +13,6 @@
     <%- flash.each do |name, msg| -%>
       <%= content_tag :div, msg, :id => "flash_#{name}" %>
     <%- end -%>
-
     <div id="user_login_box" style="float:right">
       <% if user_signed_in? -%>
         <%= current_user.email %> |
@@ -27,7 +26,7 @@
     <div style="float:left">
         <%= link_to 'Home',  root_path %>
       | <%= link_to 'New Task', new_task_path %>
-      | <%= link_to 'Tasks Summary', tasks_path %>
+      | <%= link_to 'Tasks', tasks_path %>
       | <%= link_to 'Tags',  tags_path %>
     </div>
     <div style="clear:both"></div>

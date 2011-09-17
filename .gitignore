@@ -1,11 +1,8 @@
-tmp/**/*
-log/*.log
-tmp
-tmp/pids/*.pid
-db/*.sqlite3
 .bundle
+db/*.sqlite3
+log/*.log
+tmp/
+.sass-cache/
 .idea
 *.tmproj
-*.sublime-project
-webrat-*.html
-rerun.txt
+*.sublime-*

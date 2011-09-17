@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "tags/edit.html.erb" do
   before(:each) do
     @tag = assign(:tag, stub_model(Tag,
-      :name => "test tag name"
+      :name => "MyString"
     ))
   end
 

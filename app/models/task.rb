@@ -3,12 +3,12 @@ require 'chronic_duration'
 class Task < ActiveRecord::Base
   belongs_to :user
   has_many :tag_tasks
-  has_many :tags, :through => :tag_tasks
+  has_many :tags, through: :tag_tasks
   before_create :set_stop_on_last
   validates_presence_of :user
-  validates_associated :user, :message => 'Bad user association' #Doesn't seem to do anything...
-  validates_datetime :start, :on_or_after => '2000-01-01 08:00'
-  validates_datetime :stop, :allow_blank => true
+  validates_associated :user, message: 'Bad user association' #Doesn't seem to do anything...
+  validates_datetime :start, on_or_after: '2000-01-01 08:00'
+  validates_datetime :stop, allow_blank: true
   validate :valid_stop
   default_scope order('start desc')
 
@@ -33,10 +33,10 @@ class Task < ActiveRecord::Base
       previous_task = user.tasks.where("stop < ?", self[:start]).first
       if previous_task
         gap = Task.create!(
-          :title   => 'Error: Time gap!',
-          :start   => previous_task.stop,
-          :stop    => self[:start],
-          :user_id => self[:user_id]
+          title:   'Error: Time gap!',
+          start:   previous_task.stop,
+          stop:    self[:start],
+          user_id: self[:user_id]
         )
       end
     end

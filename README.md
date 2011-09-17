@@ -18,7 +18,7 @@ Take [TimeFliesBy.com](http://www.timefliesby.com) out for a spin and see how yo
  * Multi-user support
  * Authentication with email verification and strongly encrypted passwords using [Devise](https://github.com/plataformatec/devise)
  * [Microformats](http://en.wikipedia.org/wiki/Microformat) [hCalendar](http://microformats.org/wiki/hcalendar) with [Rel-Tag](http://microformats.org/wiki/rel-tag)
- * [Rails](http://rubyonrails.org/) 3.0
+ * [Rails](http://rubyonrails.org/) 3.1
  * [Ruby](http://en.wikipedia.org/wiki/Ruby_(programming_language) 1.9.2
  * Outside-in [Behavior Driven Development](http://behaviordrivendevelopment.wikispaces.com/)
  * [Cucumber](http://cukes.info/)

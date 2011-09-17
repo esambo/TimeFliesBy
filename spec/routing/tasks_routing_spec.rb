@@ -3,32 +3,32 @@ require "spec_helper"
 describe TasksController do
   describe "routing" do
 
-    it "recognizes and generates #index" do
-      { :get => "/tasks" }.should route_to(:controller => "tasks", :action => "index")
+    it "routes to #index" do
+      get("/tasks").should route_to("tasks#index")
     end
 
-    it "recognizes and generates #new" do
-      { :get => "/tasks/new" }.should route_to(:controller => "tasks", :action => "new")
+    it "routes to #new" do
+      get("/tasks/new").should route_to("tasks#new")
     end
 
-    it "recognizes and generates #show" do
-      { :get => "/tasks/1" }.should route_to(:controller => "tasks", :action => "show", :id => "1")
+    it "routes to #show" do
+      get("/tasks/1").should route_to("tasks#show", :id => "1")
     end
 
-    it "recognizes and generates #edit" do
-      { :get => "/tasks/1/edit" }.should route_to(:controller => "tasks", :action => "edit", :id => "1")
+    it "routes to #edit" do
+      get("/tasks/1/edit").should route_to("tasks#edit", :id => "1")
     end
 
-    it "recognizes and generates #create" do
-      { :post => "/tasks" }.should route_to(:controller => "tasks", :action => "create")
+    it "routes to #create" do
+      post("/tasks").should route_to("tasks#create")
     end
 
-    it "recognizes and generates #update" do
-      { :put => "/tasks/1" }.should route_to(:controller => "tasks", :action => "update", :id => "1")
+    it "routes to #update" do
+      put("/tasks/1").should route_to("tasks#update", :id => "1")
     end
 
-    it "recognizes and generates #destroy" do
-      { :delete => "/tasks/1" }.should route_to(:controller => "tasks", :action => "destroy", :id => "1")
+    it "routes to #destroy" do
+      delete("/tasks/1").should route_to("tasks#destroy", :id => "1")
     end
 
   end

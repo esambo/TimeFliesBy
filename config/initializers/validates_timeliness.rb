@@ -2,8 +2,8 @@ ValidatesTimeliness.setup do |config|
   # Extend ORM/ODMs for full support (:active_record, :mongoid).
   config.extend_orms = [ :active_record ]
 
-  # Default timezone
-  config.default_timezone = :cst
+  # Default timezone (uses Time.zone if it has been set and 'active_support/time' has been required)
+  config.default_timezone = :current
 
   # Set the dummy date part for a time type values. (for a time-only type)
   config.dummy_date_for_time_type = [ 1999, 1, 1 ]
@@ -25,7 +25,7 @@ ValidatesTimeliness.setup do |config|
 
   # Use the plugin date/time parser which is stricter and extendable (uses gem: timeliness)
   config.use_plugin_parser = true
-  
+
   # Add one or more formats making them valid. e.g. add_formats(:date, 'd(st|rd|th) of mmm, yyyy')
   config.parser.add_formats(
     :datetime, 'm/d/yy h:nn:ss_ampm'

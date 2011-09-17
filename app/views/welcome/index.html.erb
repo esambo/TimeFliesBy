@@ -30,7 +30,7 @@
   }
 
   #header {
-    /*background-image: url("images/rails.png");*/
+    /*background-image: url("assets/rails.png");*/
     /*background-repeat: no-repeat;*/
     /*background-position: top left;*/
     /*height: 64px;*/
@@ -212,10 +212,10 @@
       <h3>Resources</h3>
       <ul class="links">
         <li>
-          <a href="http://relishapp.com/esambo/timefliesby"><img src="images/relish_smaller.png" alt="RelishApp" border="0"> Features</a>
+          <a href="http://relishapp.com/esambo/timefliesby"><%= image_tag 'relish_smaller.png', alt: 'RelishApp', border: '0' %> Features</a>
         </li>
-        <li><a href="http://github.com/esambo/TimeFliesBy"><img src="images/GitHub.ico" alt="GitHub" border="0"> Source Code</a></li>
-        <li><a href="http://www.pivotaltracker.com/projects/34616"><img src="images/Pivotal_Tracker.ico" alt="Pivotal Tracker" border="0"> Stories</a></li>
+        <li><a href="http://github.com/esambo/TimeFliesBy"><%= image_tag 'GitHub.ico', border: '0' %> Source Code</a></li>
+        <li><a href="http://www.pivotaltracker.com/projects/34616"><%= image_tag 'Pivotal_Tracker.ico', alt: 'Pivotal Tracker', border: '0' %> Stories</a></li>
         <li>Recommend: <g:plusone size="small"></g:plusone></li>
         <li><strong>Email:</strong> support at timefliesby dot com</li>
         <li>
