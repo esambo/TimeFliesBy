@@ -201,11 +201,11 @@ describe Task do
         new_t.user_id.should      == old_t.user_id
       end
 
-      it "updated timestamps" do
+      it "clears timestamps" do
         old_t = @valid_user.tasks.create!(@all_attributes)
         new_t = old_t.switch_to
-        new_t.created_at.should   == Time.zone.now
-        new_t.modified_at.should  == Time.zone.now
+        new_t.created_at.should == nil
+        new_t.updated_at.should == nil
       end
 
       it "makes it the new task" do

@@ -43,21 +43,12 @@ class Task < ActiveRecord::Base
   end
 
   def switch_to(time = Time.zone.now)
-    # Prevent Postgresql error where it passes the :id with null
-    new_task_attributes = self.dup.attributes
-    new_task_attributes.delete('id')
-    new_task = Task.new(new_task_attributes)
+    new_task = self.dup
     new_task.switch_now(time)
-    new_task[:stop]         = nil
-    new_task.stop           = nil
-    # some manual fixes that should not be necessary in Rails 3.1 anymore
-    new_task[:created_at]   = time
-    new_task[:modified_at]  = time
+    new_task.stop = nil
     # deep copy associations
     # look into gem: deep_cloneable
-    self.tags.each do |t|
-      new_task.tags.push t
-    end
+    self.tags.each { |t| new_task.tags.push t }
     new_task
   end
   
