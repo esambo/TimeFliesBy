@@ -1,3 +1,105 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+h1 {
+  /*font-size: 28px;*/
+  /*color: #000;*/
+}
+
+#content {
+  float: left;
+  /*background-color: white;*/
+  /*border: 3px solid #aaa;*/
+  /*border-top: none;*/
+  padding: 25px;
+  /*width: 500px;*/
+}
+
+#sidebar {
+  float: right;
+  width: 250px;
+}
+
+#footer {
+  clear: both;
+}
+
+#header, #history {
+  /*padding-left: 75px;*/
+  /*padding-right: 30px;*/
+}
+
+#header {
+  /*background-image: url("assets/rails.png");*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: top left;*/
+  /*height: 64px;*/
+}
+#header h1, #header h2 {margin: 0}
+#header h2 {
+  /*color: #888;*/
+  font-weight: normal;
+  font-size: 16px;
+}
+
+#history {
+  /*border-top: 1px solid #ccc;*/
+  margin-top: 25px;
+  padding-top: 15px;
+}
+#history h1 {
+  margin: 0;
+  font-size: 20px;
+}
+#history h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: normal;
+  color: #333;
+  margin-bottom: 25px;
+}
+#history ol {
+  margin-left: 0;
+  padding-left: 0;
+}
+#history li {
+  font-size: 18px;
+  color: #888;
+  margin-bottom: 25px;
+}
+#history li h2 {
+  margin: 0;
+  font-weight: normal;
+  font-size: 18px;
+  color: #333;
+}
+#history li p {
+  color: #555;
+  font-size: 13px;
+}
+
+#sidebar ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+#sidebar ul h3 {
+  margin-top: 25px;
+  font-size: 16px;
+  padding-bottom: 10px;
+  /*border-bottom: 1px solid #ccc;*/
+}
+#sidebar li {
+  list-style-type: none;
+}
+#sidebar ul.links li {
+  margin-bottom: 5px;
+}
+
+/* http://www.skinyourscreen.com/site/Downloads/killer-css3-web-buttons 
+   Used style2 as big
+   Used style4:hover to be big:hover
+*/
+a.big_button{text-decoration:none;paddin:25px;color:white;padding:12px;font-family:"Arvo";text-shadow:1px 1px 1px #444;text-align:center;width:140px;-webkit-border-radius:18px;-moz-border-radius:18px;border-radius:18px;-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;-moz-transition:all 0.3s ease-out;-o-transition:all 0.3s ease-out;-webkit-transition:all 0.3s ease-out;-ms-transition:all 0.3s ease-out;transition:all 0.3s ease-out;text-shadow:1px 1px 1px #021d35;border:1px solid #2c98f6;background-color:#59aef8;background-image:-moz-linear-gradient(19% 90% 90deg, #2c98f6, #0761b0, #59aef8 60%);background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#59aef8), to(#2c98f6), color-stop(0.6, #0761b0));background-image:-o-linear-gradient(top, #59aef8, #0761b0 50%, #2c98f6);background-image:linear-gradient(top, #59aef8, #2c98f6);-moz-box-shadow:inset 0px 3px 4px #ffffff,inset 0px 0px 6px #0761b0,0px 4px 15px #444444;-webkit-box-shadow:inset 0px 3px 4px #ffffff,inset 0px 0px 6px #0761b0,0px 4px 15px #444444;box-shadow:inset 0px 3px 4px #ffffff,inset 0px 0px 6px #0761b0,0px 4px 15px #444444;}
+a.big_button:hover{text-decoration:none;paddin:25px;border:10px solid white;background-color:#2e9fe6;background-image:-webkit-gradient(linear, 0% 0%, 0% 81%, from(#b7def6), to(#5cb4eb), color-stop(0.6, #2e9fe6), color-stop(0.6, #1885c9));background-image:-moz-linear-gradient(100% 100% 90deg, #5cb4eb, #5cb4eb, #1885c9 48%, #2e9fe6 48%, #b7def6 100%);background-image:-o-linear-gradient(top, #b7def6, #2e9fe6 48%, #1885c9 49%, #5cb4eb);background-image:linear-gradient(top, #b7def6, #2e9fe6 48%, #1885c9 49%, #5cb4eb);-moz-box-shadow:inset 0 0 7px #1885c9,inset 0 0 3px #1885c9,0 4px 15px #1576b2;-webkit-box-shadow:inset 0 0 7px #1885c9,inset 0 0 3px #1885c9,0 4px 15px #1576b2;box-shadow:inset 0 0 7px #1885c9,inset 0 0 3px #1885c9,0 4px 15px #1576b2;}
+
